@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/01/05 13:17:45 by mbartos          ###   ########.fr        #
+#    Updated: 2024/01/05 16:30:50 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ INC_LIBFT =		-I ./libft
 
 #sources
 SRC_PATH =	src/
-SRC = 	main.c
+SRC = 	push_swap.c errors.c ft_stck.c
 SRCS =	$(addprefix $(SRC_PATH), $(SRC))
 
 #objects
@@ -44,7 +44,7 @@ OBJS =		$(addprefix $(OBJ_PATH), $(OBJ))
 all: libft $(NAME)
 
 $(OBJ_PATH)%.o :$(SRC_PATH)%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC_LIBMLX) $(INC_LIBFT)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC_LIBFT)
 
 $(OBJS): $(OBJ_PATH)
 
@@ -58,7 +58,7 @@ libft:
 
 $(NAME): $(OBJS)
 	@echo "$(BOLD)$(BCYAN)[ Compiling $(NAME)... ]$(NC)"
-	@$(CC) $(OBJS) $(LIBMLX) $(INC_LIBMLX) $(LIBFT) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "$(BOLD)$(GREEN)[ $(NAME) ready! ]$(NC)"
 
 bonus: all
@@ -66,7 +66,6 @@ bonus: all
 clean:
 	@rm -Rf $(OBJ_PATH)
 	@make clean -sC $(LIBFT_PATH)
-	@rm -Rf $(LIBMLX_PATH)/build
 	@rm -f $(LIBFT_PATH)$(LIBFT_NAME)
 	@echo "$(BOLD)$(RED)[ Obj files deleted ]$(NC)"
 
