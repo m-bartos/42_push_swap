@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/05 16:29:39 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/07 18:34:29 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	check_args(int argc, char **argv);
 t_node	*ft_stcknew(int number);
 void	ft_stckadd_back(t_node **lst, t_node *new);
 t_node	*ft_stcklast(t_node *lst);
+t_node	*ft_stck_seclast(t_node *lst);
 void	ft_freestck(t_node *lst);
 
 #endif
