@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/01/05 16:30:50 by mbartos          ###   ########.fr        #
+#    Updated: 2024/01/08 15:05:11 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME =		push_swap
 
 #compiler
 CC =		gcc
-CFLAGS =	-Wall -Wextra -Werror
+#CFLAGS =	-Wall -Wextra -Werror
 
 #libft
 LIBFT_PATH =	./lib/libft/
@@ -33,7 +33,7 @@ INC_LIBFT =		-I ./libft
 
 #sources
 SRC_PATH =	src/
-SRC = 	push_swap.c errors.c ft_stck.c
+SRC = 	push_swap.c errors.c ft_stck.c pa_pb.c ra_rb.c rra_rrb.c sa_sb.c
 SRCS =	$(addprefix $(SRC_PATH), $(SRC))
 
 #objects

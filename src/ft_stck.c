@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:43:11 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/05 16:30:04 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/07 18:34:21 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,21 @@ t_node	*ft_stcklast(t_node *lst)
 	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);
+}
+
+t_node	*ft_stck_seclast(t_node *lst)
+{
+	t_node	*sec_lst;
+
+	if (lst == NULL)
+		return (NULL);
+	sec_lst = lst;
+	while (lst->next != NULL)
+	{
+		sec_lst = lst;
+		lst = lst->next;
+	}
+	return (sec_lst);
 }
 
 void	ft_freestck(t_node *lst)
