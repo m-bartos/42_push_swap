@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/09 10:06:11 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/09 11:32:02 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct node
 void	check_args(int argc, char **argv);
 
 // ft_stck.c
+int		ft_stcksize(t_node *lst);
 t_node	*ft_stcknew(int number);
 void	ft_stckadd_back(t_node **lst, t_node *new);
 t_node	*ft_stcklast(t_node *lst);

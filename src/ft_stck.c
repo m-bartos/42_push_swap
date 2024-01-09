@@ -6,11 +6,26 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:43:11 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/07 18:34:21 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/09 11:32:09 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_stcksize(t_node *lst)
+{
+	size_t	length;
+
+	if (lst == NULL)
+		return (0);
+	length = 0;
+	while (lst != NULL)
+	{
+		length++;
+		lst = lst->next;
+	}
+	return (length);
+}
 
 t_node	*ft_stcknew(int number)
 {
