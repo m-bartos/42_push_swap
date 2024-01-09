@@ -6,11 +6,14 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:17:15 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/05 16:29:47 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/09 10:14:15 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// add error for two or more of same values
+// add error for value greater or smaller than MAX_INT MIN_INT
 
 int	ft_issign(char c)
 {
