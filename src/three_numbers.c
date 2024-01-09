@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:58:02 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/09 10:14:51 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/09 11:26:18 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,19 @@ void	three_nums(t_node *stack_a)
 	if (first < second && second < third)
 		ft_printf("\n");
 	else if (first > second && second < third && third > first)
-		ft_printf("sa\n");
+		sa(&stack_a);
 	else if (first > second && second < third && third < first)
-		ft_printf("ra\n");
+		ra(&stack_a);
 	else if (first < second && second > third && third > first)
-		ft_printf("sa\nra\n");
+	{
+		sa(&stack_a);
+		ra(&stack_a);
+	}
 	else if (first < second && second > third && third < first)
-		ft_printf("rra\n");
+		rra(&stack_a);
 	else if (first > second && second > third)
-		ft_printf("sa\nrra\n");
+	{
+		sa(&stack_a);
+		rra(&stack_a);
+	}
 }
