@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/09 10:06:29 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/09 11:27:03 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ t_node	*load_in_list(int argc, char **argv)
 
 void	put_stck(t_node *stck)
 {
+	ft_printf("-----\n");
 	while (stck != NULL)
 	{
 		ft_putnbr_fd(stck->number, 1);
 		ft_putchar_fd('\n', 1);
 		stck = stck->next;
 	}
+	ft_printf("-----\n");
 }
 
 void	put_both_stck(t_node *stck_a, t_node *stck_b)
