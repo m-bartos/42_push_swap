@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/08 15:08:14 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/09 10:06:11 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ void	rrr(t_node **stck_a, t_node **stck_b);
 void	sa(t_node **stck_a);
 void	sb(t_node **stck_b);
 void	ss(t_node **stck_a, t_node **stck_b);
+
+// three_numbers.c
+void	three_nums(t_node *stack_a);
 
 #endif
