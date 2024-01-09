@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/09 11:34:24 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/09 11:37:54 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 	put_stck(lst_a);
 	num_of_ints = ft_stcksize(lst_a);
 	if (num_of_ints == 3)
-		three_nums(lst_a);
+		three_nums(&lst_a);
 	else
 		//Turk algorithm
 	return (0);
