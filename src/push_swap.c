@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/08 15:02:49 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/10 15:25:16 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ t_node	*load_in_list(int argc, char **argv)
 
 void	put_stck(t_node *stck)
 {
+	ft_printf("-----\n");
 	while (stck != NULL)
 	{
 		ft_putnbr_fd(stck->number, 1);
 		ft_putchar_fd('\n', 1);
 		stck = stck->next;
 	}
+	ft_printf("-----\n");
 }
 
 void	put_both_stck(t_node *stck_a, t_node *stck_b)
@@ -64,39 +66,20 @@ int	main(int argc, char **argv)
 	t_node	*lst_a;
 	t_node	*lst_b;
 	t_node	*new;
+	int		num_of_ints;
 
 	lst_a = NULL;
 	lst_b = NULL;
 	check_args(argc, argv);
 	lst_a = load_in_list(argc, argv);
 	put_stck(lst_a);
-	ft_putstr_fd("\n", 1);
-	rra(&lst_a);
-	put_stck(lst_a);
-	ft_putstr_fd("\n", 1);
-	rra(&lst_a);
-	put_stck(lst_a);
-	ft_putstr_fd("\n", 1);
-	rra(&lst_a);
-	put_stck(lst_a);
-	ft_putstr_fd("\n", 1);
-	
-	lst_b = ft_stcknew(1000);
-	new = ft_stcknew(2000);
-	ft_stckadd_back(&lst_b, new);
-	pa(&lst_a, &lst_b);
-	put_both_stck(lst_a, lst_b);
-	pa(&lst_a, &lst_b);
-	put_both_stck(lst_a, lst_b);
-	pb(&lst_a, &lst_b);
-	pb(&lst_a, &lst_b);
-	pb(&lst_a, &lst_b);
-	pb(&lst_a, &lst_b);
-	pb(&lst_a, &lst_b);
-	pb(&lst_a, &lst_b);
-	pb(&lst_a, &lst_b);
-	put_both_stck(lst_a, lst_b);
-	ft_freestck(lst_a);
-	ft_freestck(lst_b);
+	num_of_ints = ft_stcksize(lst_a);
+	if (num_of_ints == 3)
+		three_nums(&lst_a);
+	else
+	{
+		//Turk algorithm
+		turk_algo(&lst_a, &lst_b);
+	}
 	return (0);
 }

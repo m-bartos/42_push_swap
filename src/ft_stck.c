@@ -6,11 +6,26 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:43:11 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/07 18:34:21 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/10 09:42:07 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_stcksize(t_node *lst)
+{
+	size_t	length;
+
+	if (lst == NULL)
+		return (0);
+	length = 0;
+	while (lst != NULL)
+	{
+		length++;
+		lst = lst->next;
+	}
+	return (length);
+}
 
 t_node	*ft_stcknew(int number)
 {
@@ -73,4 +88,32 @@ void	ft_freestck(t_node *lst)
 		lst = lst->next;
 		free(temp_node);
 	}
+}
+
+int	ft_stck_min(t_node *lst)
+{
+	int	min;
+
+	min = lst->number;
+	while (lst != NULL)
+	{
+		if (min > lst->number)
+			min = lst->number;
+		lst = lst->next;
+	}
+	return (min);
+}
+
+int	ft_stck_max(t_node *lst)
+{
+	int	max;
+
+	max = lst->number;
+	while (lst != NULL)
+	{
+		if (max < lst->number)
+			max = lst->number;
+		lst = lst->next;
+	}
+	return (max);
 }
