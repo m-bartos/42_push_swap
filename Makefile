@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/01/09 10:06:51 by mbartos          ###   ########.fr        #
+#    Updated: 2024/01/10 10:33:50 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ INC_LIBFT =		-I ./libft
 
 #sources
 SRC_PATH =	src/
-SRC = 	push_swap.c errors.c ft_stck.c pa_pb.c ra_rb.c rra_rrb.c sa_sb.c three_numbers.c
+SRC = 	push_swap.c errors.c ft_stck.c pa_pb.c ra_rb.c rra_rrb.c sa_sb.c three_numbers.c turk_algo.c
 SRCS =	$(addprefix $(SRC_PATH), $(SRC))
 
 #objects
