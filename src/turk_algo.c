@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:50:20 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:57:48 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,17 @@ void	ft_stck_a_last_sort(t_node **stck_a, t_node **stck_b)
 	do_operations(&possibilities, stck_a, stck_b);
 }
 
+void	possible_cpy(t_possible *dest, const t_possible *src)
+{
+	dest->operations = src->operations;
+	dest->ra = src->ra;
+	dest->rb = src->rb;
+	dest->rr = src->rr;
+	dest->rra = src->rra;
+	dest->rrb = src->rrb;
+	dest->rrr = src->rrr;
+}
+
 void	turk_algo(t_node **stck_a, t_node **stck_b)
 {
 	// if number of ints is 4 -> push 1 to stack_b
@@ -280,13 +291,7 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 				// check if num of operations from this number is lower then any previous
 				if (new_possibilities.operations < lowest_possibilities.operations)
 				{
-					lowest_possibilities.operations = new_possibilities.operations;
-					lowest_possibilities.ra = new_possibilities.ra;
-					lowest_possibilities.rb = new_possibilities.rb;
-					lowest_possibilities.rr = new_possibilities.rr;
-					lowest_possibilities.rra = new_possibilities.rra;
-					lowest_possibilities.rrb = new_possibilities.rrb;
-					lowest_possibilities.rrr = new_possibilities.rrr;
+					possible_cpy(&lowest_possibilities, &new_possibilities);
 				}
 				//ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
 			}
@@ -298,13 +303,7 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 				// check if num of operations from this number is lower then any previous
 				if (new_possibilities.operations < lowest_possibilities.operations)
 				{
-					lowest_possibilities.operations = new_possibilities.operations;
-					lowest_possibilities.ra = new_possibilities.ra;
-					lowest_possibilities.rb = new_possibilities.rb;
-					lowest_possibilities.rr = new_possibilities.rr;
-					lowest_possibilities.rra = new_possibilities.rra;
-					lowest_possibilities.rrb = new_possibilities.rrb;
-					lowest_possibilities.rrr = new_possibilities.rrr;
+					possible_cpy(&lowest_possibilities, &new_possibilities);
 				}
 				//ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
 			}
@@ -315,13 +314,7 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 				// check if num of operations from this number is lower then any previous
 				if (new_possibilities.operations < lowest_possibilities.operations)
 				{
-					lowest_possibilities.operations = new_possibilities.operations;
-					lowest_possibilities.ra = new_possibilities.ra;
-					lowest_possibilities.rb = new_possibilities.rb;
-					lowest_possibilities.rr = new_possibilities.rr;
-					lowest_possibilities.rra = new_possibilities.rra;
-					lowest_possibilities.rrb = new_possibilities.rrb;
-					lowest_possibilities.rrr = new_possibilities.rrr;
+					possible_cpy(&lowest_possibilities, &new_possibilities);
 				}
 				//ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
 			}
