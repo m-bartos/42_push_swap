@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:17:26 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:36:45 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ void	rr_rrr_optimaze(t_possible **possibilities)
 	int	ra_rb;
 	int	rra_rrb;
 
-	// init possibilities
-	(*possibilities)->rr = 0;
-	(*possibilities)->rrr = 0;
-	(*possibilities)->operations = 0;
 	ra_rb = rx_operations(*possibilities);
 	ra_rrb = (*possibilities)->ra + (*possibilities)->rrb;
 	rra_rb = (*possibilities)->rra + (*possibilities)->rb;
@@ -130,6 +126,7 @@ void	rr_rrr_optimaze(t_possible **possibilities)
 
 void	get_numof_operations(t_possible	**possibilities, t_node *stck_a, t_node *stck_b, int num_a, int num_b)
 {
+	init_possibilities(*possibilities);
 	// calculate n of ra and n of rra to get number on top of stack_a
 	numof_r_rr_moves(stck_a, num_a, &(*possibilities)->ra, &(*possibilities)->rra);
 	// calculate n of rb and n of rrb to get max number on top of stack_b
@@ -202,6 +199,19 @@ int	is_list_sorted(t_node *lst)
 		lst = lst->next;
 	}
 	return (1);
+}
+
+void	ft_stck_last_sort(t_node **stck_a, t_node **stck_b)
+{
+	t_possible	possibilities;
+
+	init_possibilities(&possibilities);
+	numof_r_rr_moves(*stck_a, ft_stck_min(*stck_a), &possibilities.ra, &possibilities.rra);
+	if (possibilities.ra <= possibilities.rra)
+		possibilities.rra = 0;
+	else
+		possibilities.ra = 0;
+	do_operations(&possibilities, stck_a, stck_b);
 }
 
 void	turk_algo(t_node **stck_a, t_node **stck_b)
@@ -336,16 +346,17 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 	}
 	// --- WHILE LOOP ENDS ---
 
-	// rotate stack_a until lowest number on top
-	//ft_printf("Rotate until the lowest number is on top: \n");
-	numof_r_rr_moves(*stck_a, ft_stck_min(*stck_a), &lowest_possibilities.ra, &lowest_possibilities.rra);
-	// choose if ra or rra is more efficient
-	if (lowest_possibilities.ra <= lowest_possibilities.rra)
-		lowest_possibilities.rra = 0;
-	else
-		lowest_possibilities.ra = 0;
-	// do operations
-	do_operations(&lowest_possibilities, stck_a, stck_b);
+	ft_stck_last_sort(stck_a, stck_b);
+	// // rotate stack_a until lowest number on top
+	// //ft_printf("Rotate until the lowest number is on top: \n");
+	// numof_r_rr_moves(*stck_a, ft_stck_min(*stck_a), &lowest_possibilities.ra, &lowest_possibilities.rra);
+	// // choose if ra or rra is more efficient
+	// if (lowest_possibilities.ra <= lowest_possibilities.rra)
+	// 	lowest_possibilities.rra = 0;
+	// else
+	// 	lowest_possibilities.ra = 0;
+	// // do operations
+	// do_operations(&lowest_possibilities, stck_a, stck_b);
 	put_both_stck(*stck_a, *stck_b);
 	// DONE!
 }

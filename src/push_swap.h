@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:17:26 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:32:44 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct node
 	struct node	*prev;
 	struct node	*next;
 }		t_node;
+
+// init.c
+void	init_possibilities(t_possible *possibilities);
 
 // errors.c
 void	check_args(int argc, char **argv);
