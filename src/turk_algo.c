@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:41:59 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:49:09 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,40 @@ int	is_list_sorted(t_node *lst)
 	return (1);
 }
 
+void	push_stck_b_back_to_a(t_node **stck_a, t_node **stck_b)
+{
+	int			closest_higher;
+	t_possible	possibilities;
+
+	init_possibilities(&possibilities);
+	// --- WHILE LOOP STARTS ---
+	while (*stck_b != NULL)
+	{
+		// init of struct - create totally different struct? This is too big with useless variables - !! careful with do_operations function
+		init_possibilities(&possibilities);
+		// finding closest higher number in stack_a for first number in stck_b
+		if ((*stck_b)->number > ft_stck_max(*stck_a))
+			closest_higher = ft_stck_min(*stck_a);
+		else
+			closest_higher = closest_higher_num(*stck_a, (*stck_b)->number);
+		//ft_printf("Closest higher: %d\n", closest_higher);
+		// Calculate how many and which operation to use
+		// Though - POSSIBLE IMPROVEMENT - also looking for RR and RRR - maybe they are more efficient?
+		numof_r_rr_moves(*stck_a, closest_higher, &possibilities.ra, &possibilities.rra);
+		// choose if ra or rra is more efficient
+		if (possibilities.ra <= possibilities.rra)
+			possibilities.rra = 0;
+		else
+			possibilities.ra = 0;
+		// rotate the stack_a until desired number is on top
+		do_operations(&possibilities, stck_a, stck_b);
+		// push the number from stack_b to stack_a
+		pa(stck_a, stck_b);
+		put_both_stck(*stck_a, *stck_b);
+	}
+	// --- WHILE LOOP ENDS ---
+}
+
 void	ft_stck_a_last_sort(t_node **stck_a, t_node **stck_b)
 {
 	t_possible	possibilities;
@@ -239,7 +273,7 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 	while (ft_stcksize(*stck_a) > 3)
 	{
 		stck_a_iter = *stck_a;
-		lowest_possibilities.operations = 10000; // needs to be fixed and initialized properly!!!!
+		lowest_possibilities.operations = INT_MAX; // needs to be fixed and initialized properly!!!!
 		// find what number from stack_a to push (lowest num of operations)
 		while (stck_a_iter != NULL)
 		{
@@ -307,38 +341,11 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 	// --- WHILE LOOP ENDS ---
 	
 	// sort 3 ints in stack_a
-	//ft_printf("Now sorting stack_a\n");
 	sort_three_nums(stck_a);
 	put_both_stck(*stck_a, *stck_b);
 	// start pushing back from stack_b to stack_a according to turk_algo
-	//ft_printf("Start of pushing from stck_b back to stck_a: \n");
-	// --- WHILE LOOP STARTS ---
-	int	closest_higher;
-	while (*stck_b != NULL)
-	{
-		// init of struct - create totally different struct? This is too big with useless variables - !! careful with do_operations function
-		init_possibilities(&lowest_possibilities);
-		// finding closest higher number in stack_a for first number in stck_b
-		if ((*stck_b)->number > ft_stck_max(*stck_a))
-			closest_higher = ft_stck_min(*stck_a);
-		else
-			closest_higher = closest_higher_num(*stck_a, (*stck_b)->number);
-		//ft_printf("Closest higher: %d\n", closest_higher);
-		// Calculate how many and which operation to use
-		// Though - POSSIBLE IMPROVEMENT - also looking for RR and RRR - maybe they are more efficient?
-		numof_r_rr_moves(*stck_a, closest_higher, &lowest_possibilities.ra, &lowest_possibilities.rra);
-		// choose if ra or rra is more efficient
-		if (lowest_possibilities.ra <= lowest_possibilities.rra)
-			lowest_possibilities.rra = 0;
-		else
-			lowest_possibilities.ra = 0;
-		// rotate the stack_a until desired number is on top
-		do_operations(&lowest_possibilities, stck_a, stck_b);
-		// push the number from stack_b to stack_a
-		pa(stck_a, stck_b);
-		put_both_stck(*stck_a, *stck_b);
-	}
-	// --- WHILE LOOP ENDS ---
+	push_stck_b_back_to_a(stck_a, stck_b);
+	// sort stack_a
 	ft_stck_a_last_sort(stck_a, stck_b);
 	put_both_stck(*stck_a, *stck_b);
 }
