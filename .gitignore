@@ -3,3 +3,6 @@
 *.out
 push_swap
 .vscode
+checker_linux
+push_swap_test_linux.sh
+output.txt
