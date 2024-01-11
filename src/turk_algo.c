@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/10 16:27:37 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 12:06:58 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 					lowest_possibilities.rrb = new_possibilities.rrb;
 					lowest_possibilities.rrr = new_possibilities.rrr;
 				}
-				ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
+				//ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
 			}
 			// - finding if the number I want to push is bigger than the biggest number in stack_b
 			else if (number > ft_stck_max(*stck_b))
@@ -201,7 +201,7 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 					lowest_possibilities.rrb = new_possibilities.rrb;
 					lowest_possibilities.rrr = new_possibilities.rrr;
 				}
-				ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
+				//ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
 			}
 			else
 			{
@@ -218,11 +218,11 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 					lowest_possibilities.rrb = new_possibilities.rrb;
 					lowest_possibilities.rrr = new_possibilities.rrr;
 				}
-				ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
+				//ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
 			}
 			stck_a_iter = stck_a_iter->next;
 		}
-		ft_printf("Lowest oper = %d\n", lowest_possibilities.operations);
+		//ft_printf("Lowest oper = %d\n", lowest_possibilities.operations);
 		// apply the right amount of right operations and push the number in stack_b
 		do_operations(&lowest_possibilities, stck_a, stck_b);
 		pb(stck_a, stck_b);
@@ -231,12 +231,12 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 	// --- WHILE LOOP ENDS ---
 	
 	// sort 3 ints in stack_a
-	ft_printf("Now sorting stack_a\n");
+	//ft_printf("Now sorting stack_a\n");
 	three_nums(stck_a);
 	put_both_stck(*stck_a, *stck_b);
 
 	// start pushing back from stack_b to stack_a according to turk_algo
-	ft_printf("Start of pushing from stck_b back to stck_a: \n");
+	//ft_printf("Start of pushing from stck_b back to stck_a: \n");
 	// --- WHILE LOOP STARTS ---
 	int	closest_higher;
 	while (*stck_b != NULL)
@@ -254,7 +254,7 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 			closest_higher = ft_stck_min(*stck_a);
 		else
 			closest_higher = closest_higher_num(*stck_a, (*stck_b)->number);
-		ft_printf("Closest higher: %d\n", closest_higher);
+		//ft_printf("Closest higher: %d\n", closest_higher);
 		// Calculate how many and which operation to use
 		// Though - POSSIBLE IMPROVEMENT - also looking for RR and RRR - maybe they are more efficient?
 		numof_r_rr_moves(*stck_a, closest_higher, &lowest_possibilities.ra, &lowest_possibilities.rra);
@@ -272,7 +272,7 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 	// --- WHILE LOOP ENDS ---
 
 	// rotate stack_a until lowest number on top
-	ft_printf("Rotate until the lowest number is on top: \n");
+	//ft_printf("Rotate until the lowest number is on top: \n");
 	numof_r_rr_moves(*stck_a, ft_stck_min(*stck_a), &lowest_possibilities.ra, &lowest_possibilities.rra);
 	// choose if ra or rra is more efficient
 	if (lowest_possibilities.ra <= lowest_possibilities.rra)

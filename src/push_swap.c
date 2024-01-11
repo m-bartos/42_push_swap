@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/10 15:25:16 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 11:05:52 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,27 @@ void	put_stck(t_node *stck)
 
 void	put_both_stck(t_node *stck_a, t_node *stck_b)
 {
-	ft_printf("-----\n");
-	ft_printf("--A--\n");
+	static int	fd;
+
+	//ft_printf("%d", fd);
+	if (fd == 0)
+		fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	ft_putstr_fd("-----\n", fd);
+	ft_putstr_fd("--A--\n", fd);
 	while (stck_a != NULL)
 	{
-		ft_putnbr_fd(stck_a->number, 1);
-		ft_printf("\n");
+		ft_putnbr_fd(stck_a->number, fd);
+		ft_putstr_fd("\n", fd);
 		stck_a = stck_a->next;
 	}
-	ft_printf("--B--\n");
+	ft_putstr_fd("--B--\n", fd);
 	while (stck_b != NULL)
 	{
-		ft_putnbr_fd(stck_b->number, 1);
-		ft_printf("\n");
+		ft_putnbr_fd(stck_b->number, fd);
+		ft_putstr_fd("\n", fd);
 		stck_b = stck_b->next;
 	}
-	ft_printf("-----\n\n");
+	ft_putstr_fd("-----\n\n", fd);
 }
 
 int	main(int argc, char **argv)
@@ -72,7 +77,7 @@ int	main(int argc, char **argv)
 	lst_b = NULL;
 	check_args(argc, argv);
 	lst_a = load_in_list(argc, argv);
-	put_stck(lst_a);
+	put_both_stck(lst_a, lst_b);
 	num_of_ints = ft_stcksize(lst_a);
 	if (num_of_ints == 3)
 		three_nums(&lst_a);
