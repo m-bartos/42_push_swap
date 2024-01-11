@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 14:16:04 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 15:59:16 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,21 @@ void	do_operations(t_possible *lowest_possibilities, t_node **stck_a, t_node **s
 	i = 0;
 	while (i++ < lowest_possibilities->rrr)
 		rrr(stck_a, stck_b);
+}
+
+int	list_sorted(t_node *lst)
+{
+	int	temp;
+
+	temp = lst->number;
+	while (lst != NULL)
+	{
+		if (temp > lst->number)
+			return (0);
+		temp = lst->number;
+		lst = lst->next;
+	}
+	return (1);
 }
 
 void	turk_algo(t_node **stck_a, t_node **stck_b)

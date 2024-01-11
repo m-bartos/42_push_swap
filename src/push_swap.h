@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/10 13:33:39 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 15:57:10 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,12 @@ void	sb(t_node **stck_b);
 void	ss(t_node **stck_a, t_node **stck_b);
 
 // three_numbers.c
+void	two_nums(t_node **stck_a);
 void	three_nums(t_node **stack_a);
 
 //turk_algo.c
-void	numof_r_rr_moves (t_node *stck, int num_to_move, int *r, int *rr);
+int		list_sorted(t_node *lst);
+void	numof_r_rr_moves(t_node *stck, int num_to_move, int *r, int *rr);
 void	turk_algo(t_node **stck_a, t_node **stck_b);
 int		closest_lower_num(t_node *stck, int desired_num);
 
