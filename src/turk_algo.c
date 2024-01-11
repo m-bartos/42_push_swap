@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 17:01:30 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 17:02:09 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,7 +230,7 @@ void	push_stck_b_back_to_a(t_node **stck_a, t_node **stck_b)
 	}
 }
 
-void	ft_stck_a_last_sort(t_node **stck_a, t_node **stck_b)
+void	last_sort_of_stck_a(t_node **stck_a, t_node **stck_b)
 {
 	t_possible	possibilities;
 
@@ -312,6 +312,6 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 	// start pushing back from stack_b to stack_a according to turk_algo
 	push_stck_b_back_to_a(stck_a, stck_b);
 	// sort stack_a
-	ft_stck_a_last_sort(stck_a, stck_b);
+	last_sort_of_stck_a(stck_a, stck_b);
 	put_both_stck(*stck_a, *stck_b);
 }
