@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:36:45 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:41:59 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ int	is_list_sorted(t_node *lst)
 	return (1);
 }
 
-void	ft_stck_last_sort(t_node **stck_a, t_node **stck_b)
+void	ft_stck_a_last_sort(t_node **stck_a, t_node **stck_b)
 {
 	t_possible	possibilities;
 
@@ -308,7 +308,7 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 	
 	// sort 3 ints in stack_a
 	//ft_printf("Now sorting stack_a\n");
-	three_nums(stck_a);
+	sort_three_nums(stck_a);
 	put_both_stck(*stck_a, *stck_b);
 	// start pushing back from stack_b to stack_a according to turk_algo
 	//ft_printf("Start of pushing from stck_b back to stck_a: \n");
@@ -317,13 +317,7 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 	while (*stck_b != NULL)
 	{
 		// init of struct - create totally different struct? This is too big with useless variables - !! careful with do_operations function
-		lowest_possibilities.operations = 0;
-		lowest_possibilities.ra = 0;
-		lowest_possibilities.rb = 0;
-		lowest_possibilities.rr = 0;
-		lowest_possibilities.rra = 0;
-		lowest_possibilities.rrb = 0;
-		lowest_possibilities.rrr = 0;
+		init_possibilities(&lowest_possibilities);
 		// finding closest higher number in stack_a for first number in stck_b
 		if ((*stck_b)->number > ft_stck_max(*stck_a))
 			closest_higher = ft_stck_min(*stck_a);
@@ -345,18 +339,6 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 		put_both_stck(*stck_a, *stck_b);
 	}
 	// --- WHILE LOOP ENDS ---
-
-	ft_stck_last_sort(stck_a, stck_b);
-	// // rotate stack_a until lowest number on top
-	// //ft_printf("Rotate until the lowest number is on top: \n");
-	// numof_r_rr_moves(*stck_a, ft_stck_min(*stck_a), &lowest_possibilities.ra, &lowest_possibilities.rra);
-	// // choose if ra or rra is more efficient
-	// if (lowest_possibilities.ra <= lowest_possibilities.rra)
-	// 	lowest_possibilities.rra = 0;
-	// else
-	// 	lowest_possibilities.ra = 0;
-	// // do operations
-	// do_operations(&lowest_possibilities, stck_a, stck_b);
+	ft_stck_a_last_sort(stck_a, stck_b);
 	put_both_stck(*stck_a, *stck_b);
-	// DONE!
 }

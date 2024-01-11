@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:32:44 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:39:47 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	sb(t_node **stck_b);
 void	ss(t_node **stck_a, t_node **stck_b);
 
 // three_numbers.c
-void	two_nums(t_node **stck_a);
-void	three_nums(t_node **stack_a);
+void	sort_two_nums(t_node **stck_a);
+void	sort_three_nums(t_node **stack_a);
 
 //turk_algo.c
 int		is_list_sorted(t_node *lst);
