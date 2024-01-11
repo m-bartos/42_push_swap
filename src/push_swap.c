@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 11:05:52 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 15:28:44 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ void	put_both_stck(t_node *stck_a, t_node *stck_b)
 {
 	static int	fd;
 
-	//ft_printf("%d", fd);
 	if (fd == 0)
+	{
 		fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+		fd = -1; // delete if you want to write stacks to output.txt
+	}
 	ft_putstr_fd("-----\n", fd);
 	ft_putstr_fd("--A--\n", fd);
 	while (stck_a != NULL)
