@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:49:09 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:50:20 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,19 +207,15 @@ void	push_stck_b_back_to_a(t_node **stck_a, t_node **stck_b)
 	t_possible	possibilities;
 
 	init_possibilities(&possibilities);
-	// --- WHILE LOOP STARTS ---
 	while (*stck_b != NULL)
 	{
-		// init of struct - create totally different struct? This is too big with useless variables - !! careful with do_operations function
 		init_possibilities(&possibilities);
 		// finding closest higher number in stack_a for first number in stck_b
 		if ((*stck_b)->number > ft_stck_max(*stck_a))
 			closest_higher = ft_stck_min(*stck_a);
 		else
 			closest_higher = closest_higher_num(*stck_a, (*stck_b)->number);
-		//ft_printf("Closest higher: %d\n", closest_higher);
 		// Calculate how many and which operation to use
-		// Though - POSSIBLE IMPROVEMENT - also looking for RR and RRR - maybe they are more efficient?
 		numof_r_rr_moves(*stck_a, closest_higher, &possibilities.ra, &possibilities.rra);
 		// choose if ra or rra is more efficient
 		if (possibilities.ra <= possibilities.rra)
@@ -232,7 +228,6 @@ void	push_stck_b_back_to_a(t_node **stck_a, t_node **stck_b)
 		pa(stck_a, stck_b);
 		put_both_stck(*stck_a, *stck_b);
 	}
-	// --- WHILE LOOP ENDS ---
 }
 
 void	ft_stck_a_last_sort(t_node **stck_a, t_node **stck_b)
