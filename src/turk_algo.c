@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:57:48 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 17:01:30 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,12 @@ void	possible_cpy(t_possible *dest, const t_possible *src)
 
 void	turk_algo(t_node **stck_a, t_node **stck_b)
 {
+	t_possible	new_possibilities;
+	t_possible	*ptr_new_possibilities;
+	t_possible	lowest_possibilities;
+	int			number;
+	t_node 		*stck_a_iter;
+
 	// if number of ints is 4 -> push 1 to stack_b
 	// else (number of ints >= 5) -> push 2 to stack_b
 	if (ft_stcksize(*stck_a) == 4)
@@ -267,13 +273,8 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 	}
 	put_both_stck(*stck_a, *stck_b);
 
-	// start pushing from stack_a to stack_b according to turk_algo
-	t_possible	new_possibilities;
-	t_possible	*ptr_new_possibilities;
-	t_possible	lowest_possibilities;
-	int	number;
-	t_node *stck_a_iter;
 	ptr_new_possibilities = &new_possibilities;
+	// start pushing from stack_a to stack_b according to turk_algo
 	// --- WHILE LOOP STARTS---
 	// CHECK if num of ints in stack_a != 3
 	while (ft_stcksize(*stck_a) > 3)
@@ -285,39 +286,16 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 		{
 			number = stck_a_iter->number;
 			if (number < ft_stck_min(*stck_b))
-			{
-				// find num of operations - rr, rrr, ra, rrb, rra, rb
 				get_numof_operations(&ptr_new_possibilities, *stck_a, *stck_b, number, ft_stck_max(*stck_b));
-				// check if num of operations from this number is lower then any previous
-				if (new_possibilities.operations < lowest_possibilities.operations)
-				{
-					possible_cpy(&lowest_possibilities, &new_possibilities);
-				}
-				//ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
-			}
 			// - finding if the number I want to push is bigger than the biggest number in stack_b
 			else if (number > ft_stck_max(*stck_b))
-			{
-				// find num of operations - rr, rrr, ra, rrb, rra, rb
 				get_numof_operations(&ptr_new_possibilities, *stck_a, *stck_b, number, ft_stck_max(*stck_b));
-				// check if num of operations from this number is lower then any previous
-				if (new_possibilities.operations < lowest_possibilities.operations)
-				{
-					possible_cpy(&lowest_possibilities, &new_possibilities);
-				}
-				//ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
-			}
 			else
-			{
-				// find num of operations - rr, rrr, ra, rrb, rra, rb
 				get_numof_operations(&ptr_new_possibilities, *stck_a, *stck_b, number, closest_lower_num(*stck_b, number));
-				// check if num of operations from this number is lower then any previous
-				if (new_possibilities.operations < lowest_possibilities.operations)
-				{
+			// check if num of operations from this number is lower then any previous
+			if (new_possibilities.operations < lowest_possibilities.operations)
 					possible_cpy(&lowest_possibilities, &new_possibilities);
-				}
-				//ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
-			}
+			//ft_printf("NUMBER = %d, OPER = %d, ra = %d, rra = %d, rb = %d, rrb = %d\n", number, new_possibilities.operations, new_possibilities.ra, new_possibilities.rra, new_possibilities.rb, new_possibilities.rrb);
 			stck_a_iter = stck_a_iter->next;
 		}
 		//ft_printf("Lowest oper = %d\n", lowest_possibilities.operations);
