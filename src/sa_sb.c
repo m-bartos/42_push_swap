@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:59:44 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/08 15:06:25 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 17:05:00 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_node	*sa_sb(t_node *stck)
 {
 	t_node	*first;
 	t_node	*second;
-	
+
 	first = stck;
 	second = stck->next;
 	first->next = second->next;
