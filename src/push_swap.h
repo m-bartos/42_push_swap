@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:39:47 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 17:07:38 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdint.h>
 # include <fcntl.h>
 
-# define INT_MIN (-2147483647 - 1) // -2^31
-# define INT_MAX 2147483647 // 2^31 - 1
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
 
 typedef struct possible
 {
@@ -90,6 +90,5 @@ int		closest_lower_num(t_node *stck, int desired_num);
 
 //push_swap.c
 void	put_both_stck(t_node *stck_a, t_node *stck_b);
-
 
 #endif
