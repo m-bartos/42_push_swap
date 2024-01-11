@@ -6,39 +6,38 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 15:59:16 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:17:26 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	numof_r_rr_moves (t_node *stck, int num_to_move, int *r, int *rr)
+void	numof_r_rr_moves (t_node *stck, int num_to_move, int *rx, int *rrx)
 {
-	int	numof_r;
-	int	numof_rr;
+	int	numof_rx;
+	int	numof_rrx;
 	int	before_num_to_find;
 
 	before_num_to_find = 1;
-	numof_r = 0;
-	numof_rr = 0;
+	numof_rx = 0;
+	numof_rrx = 0;
 	while (stck != NULL)
 	{
 		if (stck->number == num_to_move)
 			before_num_to_find = 0;
 		else if (before_num_to_find == 1)
-			numof_r++;
+			numof_rx++;
 		else
-			numof_rr++;
+			numof_rrx++;
 		stck = stck->next;
 	}
-	if (numof_r > 0 || numof_rr > 0)
-		numof_rr++;
-	*r = numof_r;
-	*rr = numof_rr;
-	// ft_printf("r = %d, rr = %d\n", *r, *rr);
+	if (numof_rx > 0 || numof_rrx > 0)
+		numof_rrx++;
+	*rx = numof_rx;
+	*rrx = numof_rrx;
 }
 
-int	rr_operations(t_possible *possibilities)
+int	rx_operations(t_possible *possibilities)
 {
 	if(possibilities->ra >= possibilities->rb)
 		return(possibilities->ra);
@@ -46,7 +45,7 @@ int	rr_operations(t_possible *possibilities)
 		return(possibilities->rb);
 }
 
-int	rrr_operations(t_possible *possibilities)
+int	rrx_operations(t_possible *possibilities)
 {
 	if(possibilities->rra >= possibilities->rrb)
 		return(possibilities->rra);
@@ -61,13 +60,14 @@ void	rr_rrr_optimaze(t_possible **possibilities)
 	int	ra_rb;
 	int	rra_rrb;
 
-	ra_rb = rr_operations(*possibilities);
-	ra_rrb = (*possibilities)->ra + (*possibilities)->rrb;
-	rra_rb = (*possibilities)->rra + (*possibilities)->rb;
-	rra_rrb = rrr_operations(*possibilities);
+	// init possibilities
 	(*possibilities)->rr = 0;
 	(*possibilities)->rrr = 0;
 	(*possibilities)->operations = 0;
+	ra_rb = rx_operations(*possibilities);
+	ra_rrb = (*possibilities)->ra + (*possibilities)->rrb;
+	rra_rb = (*possibilities)->rra + (*possibilities)->rb;
+	rra_rrb = rrx_operations(*possibilities);
 	// ft_printf("oper = %d, ra = %d, rb = %d, rr = %d, rra = %d, rrb = %d, rrr = %d\n", (*possibilities)->operations, (*possibilities)->ra, (*possibilities)->rb, (*possibilities)->rr, (*possibilities)->rra, (*possibilities)->rrb, (*possibilities)->rrr);
 	// ft_printf("ra_rb = %d, ra_rrb = %d, rra_rb = %d, rra_rrb = %d\n", ra_rb, ra_rrb, rra_rb, rra_rrb);
 	if (ra_rb <= ra_rrb && ra_rb <= rra_rb && ra_rb <= rra_rrb)
@@ -80,7 +80,6 @@ void	rr_rrr_optimaze(t_possible **possibilities)
 			(*possibilities)->rb = 0;	
 			(*possibilities)->rra = 0;
 			(*possibilities)->rrb = 0;
-			(*possibilities)->rrr = 0;
 		}
 		else
 		{
@@ -90,7 +89,6 @@ void	rr_rrr_optimaze(t_possible **possibilities)
 			(*possibilities)->ra = 0;
 			(*possibilities)->rra = 0;
 			(*possibilities)->rrb = 0;
-			(*possibilities)->rrr = 0;
 		}
 	}
 	else if (rra_rrb <= ra_rb && rra_rrb <= ra_rrb && rra_rrb <= rra_rb)
@@ -119,16 +117,12 @@ void	rr_rrr_optimaze(t_possible **possibilities)
 		(*possibilities)->operations = ra_rrb;
 		(*possibilities)->rra = 0;
 		(*possibilities)->rb = 0;
-		(*possibilities)->rr = 0;
-		(*possibilities)->rrr = 0;
 	}
 	else if (rra_rb <= ra_rb && rra_rb <= ra_rrb && rra_rb <= rra_rrb)
 	{
 		(*possibilities)->operations = rra_rb;
 		(*possibilities)->ra = 0;
 		(*possibilities)->rrb = 0;
-		(*possibilities)->rr = 0;
-		(*possibilities)->rrr = 0;
 	}
 	// ft_printf("ra_rb = %d, ra_rrb = %d, rra_rb = %d, rra_rrb = %d\n", ra_rb, ra_rrb, rra_rb, rra_rrb);
 	// ft_printf("oper = %d, ra = %d, rb = %d, rr = %d, rra = %d, rrb = %d, rrr = %d\n\n", (*possibilities)->operations, (*possibilities)->ra, (*possibilities)->rb, (*possibilities)->rr, (*possibilities)->rra, (*possibilities)->rrb, (*possibilities)->rrr);
@@ -195,7 +189,7 @@ void	do_operations(t_possible *lowest_possibilities, t_node **stck_a, t_node **s
 		rrr(stck_a, stck_b);
 }
 
-int	list_sorted(t_node *lst)
+int	is_list_sorted(t_node *lst)
 {
 	int	temp;
 

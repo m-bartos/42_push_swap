@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:03:51 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:17:26 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	stck_a = load_in_list(argc, argv);
 	put_both_stck(stck_a, stck_b);
-	if (list_sorted(stck_a) || ft_stcksize(stck_a) == 1)
+	if (is_list_sorted(stck_a) || ft_stcksize(stck_a) == 1)
 		return (0);
 	else if (ft_stcksize(stck_a) == 2)
 		two_nums(&stck_a);
