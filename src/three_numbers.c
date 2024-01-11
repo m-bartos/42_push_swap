@@ -6,37 +6,43 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:58:02 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/09 11:37:38 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:01:50 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	three_nums(t_node **stack_a)
+void	two_nums(t_node **stck_a)
+{
+	if (list_sorted(*stck_a))
+		return ;
+	else
+		ra(stck_a);
+}
+
+void	three_nums(t_node **stck_a)
 {
 	int	first;
 	int	second;
 	int	third;
 
-	first = (*stack_a)->number;
-	second = (*stack_a)->next->number;
-	third = (*stack_a)->next->next->number;
-	if (first < second && second < third)
-		ft_printf("\n");
-	else if (first > second && second < third && third > first)
-		sa(stack_a);
+	first = (*stck_a)->number;
+	second = (*stck_a)->next->number;
+	third = (*stck_a)->next->next->number;
+	if (first > second && second < third && third > first)
+		sa(stck_a);
 	else if (first > second && second < third && third < first)
-		ra(stack_a);
+		ra(stck_a);
 	else if (first < second && second > third && third > first)
 	{
-		sa(stack_a);
-		ra(stack_a);
+		sa(stck_a);
+		ra(stck_a);
 	}
 	else if (first < second && second > third && third < first)
-		rra(stack_a);
+		rra(stck_a);
 	else if (first > second && second > third)
 	{
-		sa(stack_a);
-		rra(stack_a);
+		sa(stck_a);
+		rra(stck_a);
 	}
 }
