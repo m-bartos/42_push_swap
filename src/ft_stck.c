@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:43:11 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/10 09:42:07 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 15:43:17 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ t_node	*ft_stcknew(int number)
 	if (new_node == NULL)
 		return (NULL);
 	new_node->number = number;
-	new_node->index = 0;
-	new_node->prev = NULL;
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -116,4 +114,21 @@ int	ft_stck_max(t_node *lst)
 		lst = lst->next;
 	}
 	return (max);
+}
+
+void	ft_stckclear(t_node **lst)
+{
+	t_node	*temp;
+	t_node	*actual_node;
+
+	if (lst == NULL || *lst == NULL)
+		return ;
+	actual_node = *lst;
+	while (actual_node != NULL)
+	{
+		temp = actual_node->next;
+		free(actual_node);
+		actual_node = temp;
+	}
+	*lst = NULL;
 }

@@ -6,11 +6,23 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 12:38:13 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 16:05:45 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	put_stck(t_node *stck)
+{
+	ft_printf("-----\n");
+	while (stck != NULL)
+	{
+		ft_putnbr_fd(stck->number, 1);
+		ft_putchar_fd('\n', 1);
+		stck = stck->next;
+	}
+	ft_printf("-----\n");
+}
 
 int	arr_length(char	**arr)
 {
@@ -23,6 +35,51 @@ int	arr_length(char	**arr)
 		arr++;
 	}
 	return (i);
+}
+
+int	ft_pushswap_atoi(const char *str)
+{
+	int		i;
+	long	sign;
+	long	number;
+
+	i = 0;
+	sign = 1;
+	number = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	else if (!(str[i] >= '0' && str[i] <= '9'))
+		return (0);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		number = number * 10 + str[i] - '0';
+		i++;
+	}
+	number = number * sign;
+	if (number <= INT_MAX && number >= INT_MIN)
+		return (number);
+	ft_putstr_fd("Error: at least one number is not integer", 1);
+	exit(1);
+}
+
+void	free_array(char **arr)
+{
+	int	i;
+
+	i = 0;	
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
 
 t_node	*load_in_list(int argc, char **argv)
@@ -41,11 +98,11 @@ t_node	*load_in_list(int argc, char **argv)
 		i = 0;
 		while (i < arr_length(arr_of_ints))
 		{
-			new_node = ft_stcknew(ft_atoi(arr_of_ints[i]));
+			new_node = ft_stcknew(ft_pushswap_atoi(arr_of_ints[i]));
 			ft_stckadd_back(&stck, new_node);
 			i++;
 		}
-		free(arr_of_ints);
+		free_array(arr_of_ints);
 	}
 	else
 	{
@@ -53,24 +110,12 @@ t_node	*load_in_list(int argc, char **argv)
 		i = 1;
 		while (i < argc)
 		{
-			new_node = ft_stcknew(ft_atoi(argv[i]));
+			new_node = ft_stcknew(ft_pushswap_atoi(argv[i]));
 			ft_stckadd_back(&stck, new_node);
 			i++;
 		}
 	}
 	return (stck);
-}
-
-void	put_stck(t_node *stck)
-{
-	ft_printf("-----\n");
-	while (stck != NULL)
-	{
-		ft_putnbr_fd(stck->number, 1);
-		ft_putchar_fd('\n', 1);
-		stck = stck->next;
-	}
-	ft_printf("-----\n");
 }
 
 void	put_both_stck(t_node *stck_a, t_node *stck_b)
@@ -104,7 +149,6 @@ int	main(int argc, char **argv)
 {
 	t_node	*stck_a;
 	t_node	*stck_b;
-	t_node	*new;
 
 	stck_a = NULL;
 	stck_b = NULL;
@@ -114,14 +158,17 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	stck_a = load_in_list(argc, argv);
-	put_both_stck(stck_a, stck_b);
+	check_dup_nums(stck_a);
 	if (is_list_sorted(stck_a) || ft_stcksize(stck_a) == 1)
-		return (0);
+	{
+	}
 	else if (ft_stcksize(stck_a) == 2)
 		sort_two_nums(&stck_a);
 	else if (ft_stcksize(stck_a) == 3)
 		sort_three_nums(&stck_a);
 	else
 		turk_algo(&stck_a, &stck_b);
+	ft_stckclear(&stck_a);
+	ft_stckclear(&stck_b);
 	return (0);
 }
