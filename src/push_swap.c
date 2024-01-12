@@ -6,23 +6,23 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 16:05:45 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 16:19:34 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	put_stck(t_node *stck)
-{
-	ft_printf("-----\n");
-	while (stck != NULL)
-	{
-		ft_putnbr_fd(stck->number, 1);
-		ft_putchar_fd('\n', 1);
-		stck = stck->next;
-	}
-	ft_printf("-----\n");
-}
+// void	put_stck(t_node *stck)
+// {
+// 	ft_printf("-----\n");
+// 	while (stck != NULL)
+// 	{
+// 		ft_putnbr_fd(stck->number, 1);
+// 		ft_putchar_fd('\n', 1);
+// 		stck = stck->next;
+// 	}
+// 	ft_printf("-----\n");
+// }
 
 int	arr_length(char	**arr)
 {
@@ -58,10 +58,7 @@ int	ft_pushswap_atoi(const char *str)
 	else if (!(str[i] >= '0' && str[i] <= '9'))
 		return (0);
 	while (str[i] >= '0' && str[i] <= '9')
-	{
-		number = number * 10 + str[i] - '0';
-		i++;
-	}
+		number = number * 10 + str[i++] - '0';
 	number = number * sign;
 	if (number <= INT_MAX && number >= INT_MIN)
 		return (number);
@@ -73,7 +70,7 @@ void	free_array(char **arr)
 {
 	int	i;
 
-	i = 0;	
+	i = 0;
 	while (arr[i] != NULL)
 	{
 		free(arr[i]);
@@ -84,11 +81,10 @@ void	free_array(char **arr)
 
 t_node	*load_in_list(int argc, char **argv)
 {
-	char**	arr_of_ints;
+	char	**arr_of_ints;
 	int		i;
 	t_node	*stck;
 	t_node	*new_node;
-	
 
 	stck = NULL;
 	if (argc == 2)
@@ -118,32 +114,32 @@ t_node	*load_in_list(int argc, char **argv)
 	return (stck);
 }
 
-void	put_both_stck(t_node *stck_a, t_node *stck_b)
-{
-	static int	fd;
+// void	put_both_stck(t_node *stck_a, t_node *stck_b)
+// {
+// 	static int	fd;
 
-	if (fd == 0)
-	{
-		fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
-		fd = -1; // delete if you want to write stacks to output.txt
-	}
-	ft_putstr_fd("-----\n", fd);
-	ft_putstr_fd("--A--\n", fd);
-	while (stck_a != NULL)
-	{
-		ft_putnbr_fd(stck_a->number, fd);
-		ft_putstr_fd("\n", fd);
-		stck_a = stck_a->next;
-	}
-	ft_putstr_fd("--B--\n", fd);
-	while (stck_b != NULL)
-	{
-		ft_putnbr_fd(stck_b->number, fd);
-		ft_putstr_fd("\n", fd);
-		stck_b = stck_b->next;
-	}
-	ft_putstr_fd("-----\n\n", fd);
-}
+// 	if (fd == 0)
+// 	{
+// 		fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+// 		fd = -1; // delete if you want to write stacks to output.txt
+// 	}
+// 	ft_putstr_fd("-----\n", fd);
+// 	ft_putstr_fd("--A--\n", fd);
+// 	while (stck_a != NULL)
+// 	{
+// 		ft_putnbr_fd(stck_a->number, fd);
+// 		ft_putstr_fd("\n", fd);
+// 		stck_a = stck_a->next;
+// 	}
+// 	ft_putstr_fd("--B--\n", fd);
+// 	while (stck_b != NULL)
+// 	{
+// 		ft_putnbr_fd(stck_b->number, fd);
+// 		ft_putstr_fd("\n", fd);
+// 		stck_b = stck_b->next;
+// 	}
+// 	ft_putstr_fd("-----\n\n", fd);
+// }
 
 int	main(int argc, char **argv)
 {

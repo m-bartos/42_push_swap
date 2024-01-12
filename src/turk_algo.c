@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 12:10:03 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 16:16:17 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,6 @@ void	push_stck_b_back_to_a(t_node **stck_a, t_node **stck_b)
 			possblts.ra = 0;
 		do_operations(&possblts, stck_a, stck_b);
 		pa(stck_a, stck_b);
-		put_both_stck(*stck_a, *stck_b);
 	}
 }
 

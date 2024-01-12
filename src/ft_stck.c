@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:43:11 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 15:43:17 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 16:16:49 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,6 @@ t_node	*ft_stck_seclast(t_node *lst)
 		lst = lst->next;
 	}
 	return (sec_lst);
-}
-
-void	ft_freestck(t_node *lst)
-{
-	t_node	*temp_node;
-
-	while (lst != NULL)
-	{
-		temp_node = lst;
-		lst = lst->next;
-		free(temp_node);
-	}
 }
 
 int	ft_stck_min(t_node *lst)
