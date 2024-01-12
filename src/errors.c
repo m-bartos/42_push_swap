@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:17:15 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/09 10:14:15 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 12:18:30 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,20 @@ int	ft_issign(char c)
 	return (0);
 }
 
-int	is_valid_number(char *str)
+void	is_valid_number(char *str)
 {
+	if (ft_issign(*str))
+		str++;
 	while (*str)
 	{
-		if (ft_issign(*str))
+		if (ft_isdigit(*str))
 			str++;
-		else if (ft_isdigit(*str))
-			return (1);
 		else
-			break ;
+		{
+			ft_putstr_fd("Error: wrong input.", 2);
+			exit(1);
+		}
 	}
-	ft_putstr_fd("Error: wrong input.", 2);
-	exit(1);
 }
 
 void	check_args(int argc, char **argv)
