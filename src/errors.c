@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:17:15 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 12:18:30 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 12:42:10 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,11 @@ void	is_valid_number(char *str)
 	}
 }
 
-void	check_args(int argc, char **argv)
+void	check_args(int len, char **arr)
 {
 	int	i;
 
-	if (argc < 2)
-	{
-		ft_putstr_fd("Error: Not enough parameters", 2);
-		exit(1);
-	}
-	else
-	{
-		i = 1;
-		while (i < argc)
-			is_valid_number(argv[i++]);
-	}
+	i = 0;
+	while (i < len)
+		is_valid_number(arr[i++]);
 }
