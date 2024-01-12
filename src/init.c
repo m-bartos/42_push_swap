@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pa_pb.c                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 15:01:15 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 17:06:29 by mbartos          ###   ########.fr       */
+/*   Created: 2024/01/11 16:31:57 by mbartos           #+#    #+#             */
+/*   Updated: 2024/01/12 12:10:03 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_node **stck_a, t_node **stck_b)
+void	init_possblts(t_poss *possblts)
 {
-	t_node	*second_b;
-
-	if (*stck_b == NULL)
-		return ;
-	second_b = (*stck_b)->next;
-	(*stck_b)->next = *stck_a;
-	*stck_a = *stck_b;
-	*stck_b = second_b;
-	ft_printf("pa\n");
-}
-
-void	pb(t_node **stck_a, t_node **stck_b)
-{
-	t_node	*second_a;
-
-	if (*stck_a == NULL)
-		return ;
-	second_a = (*stck_a)->next;
-	(*stck_a)->next = *stck_b;
-	*stck_b = *stck_a;
-	*stck_a = second_a;
-	ft_printf("pb\n");
+	possblts->operations = 0;
+	possblts->ra = 0;
+	possblts->rb = 0;
+	possblts->rr = 0;
+	possblts->rra = 0;
+	possblts->rrb = 0;
+	possblts->rrr = 0;
 }

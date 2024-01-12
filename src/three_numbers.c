@@ -6,21 +6,21 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:58:02 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:01:50 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:39:47 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	two_nums(t_node **stck_a)
+void	sort_two_nums(t_node **stck_a)
 {
-	if (list_sorted(*stck_a))
+	if (is_list_sorted(*stck_a))
 		return ;
 	else
 		ra(stck_a);
 }
 
-void	three_nums(t_node **stck_a)
+void	sort_three_nums(t_node **stck_a)
 {
 	int	first;
 	int	second;

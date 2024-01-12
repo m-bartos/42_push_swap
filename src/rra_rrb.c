@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:02:55 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/08 15:07:58 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/11 17:04:45 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_node	*rra_rrb(t_node *stck)
 	last = ft_stcklast(stck);
 	second_last->next = NULL;
 	last->next = first;
-	return(last);
+	return (last);
 }
 
 void	rra(t_node **stck_a)

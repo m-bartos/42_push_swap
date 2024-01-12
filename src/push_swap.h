@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 15:57:10 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 12:10:03 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <stdint.h>
 # include <fcntl.h>
 
-# define INT_MIN (-2147483647 - 1) // -2^31
-# define INT_MAX 2147483647 // 2^31 - 1
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
 
-typedef struct possible
+typedef struct poss
 {
 	int		ra;
 	int		rra;
@@ -33,7 +33,7 @@ typedef struct possible
 	int		rr;
 	int		rrr;
 	int		operations;
-}			t_possible;
+}			t_poss;
 
 typedef struct node
 {
@@ -42,6 +42,9 @@ typedef struct node
 	struct node	*prev;
 	struct node	*next;
 }		t_node;
+
+// init.c
+void	init_possblts(t_poss *possibilities);
 
 // errors.c
 void	check_args(int argc, char **argv);
@@ -76,17 +79,16 @@ void	sb(t_node **stck_b);
 void	ss(t_node **stck_a, t_node **stck_b);
 
 // three_numbers.c
-void	two_nums(t_node **stck_a);
-void	three_nums(t_node **stack_a);
+void	sort_two_nums(t_node **stck_a);
+void	sort_three_nums(t_node **stack_a);
 
 //turk_algo.c
-int		list_sorted(t_node *lst);
+int		is_list_sorted(t_node *lst);
 void	numof_r_rr_moves(t_node *stck, int num_to_move, int *r, int *rr);
 void	turk_algo(t_node **stck_a, t_node **stck_b);
-int		closest_lower_num(t_node *stck, int desired_num);
+int		lower_num(t_node *stck, int desired_num);
 
 //push_swap.c
 void	put_both_stck(t_node *stck_a, t_node *stck_b);
-
 
 #endif
