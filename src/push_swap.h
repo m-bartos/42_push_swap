@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 12:10:03 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 16:01:35 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ typedef struct poss
 typedef struct node
 {
 	int			number;
-	int			index;
-	struct node	*prev;
 	struct node	*next;
 }		t_node;
 
@@ -47,6 +45,7 @@ typedef struct node
 void	init_possblts(t_poss *possibilities);
 
 // errors.c
+void	check_dup_nums(t_node *stck);
 void	check_args(int argc, char **argv);
 
 // ft_stck.c
@@ -58,6 +57,7 @@ t_node	*ft_stck_seclast(t_node *lst);
 void	ft_freestck(t_node *lst);
 int		ft_stck_min(t_node *lst);
 int		ft_stck_max(t_node *lst);
+void	ft_stckclear(t_node **lst);
 
 // pa_pb.c
 void	pa(t_node **stck_a, t_node **stck_b);
