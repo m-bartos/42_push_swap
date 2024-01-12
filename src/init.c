@@ -6,19 +6,19 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:31:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:32:20 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 12:10:03 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_possibilities(t_possible *possibilities)
+void	init_possblts(t_poss *possblts)
 {
-	possibilities->operations = 0;
-	possibilities->ra = 0;
-	possibilities->rb = 0;
-	possibilities->rr = 0;
-	possibilities->rra = 0;
-	possibilities->rrb = 0;
-	possibilities->rrr = 0;
+	possblts->operations = 0;
+	possblts->ra = 0;
+	possblts->rb = 0;
+	possblts->rr = 0;
+	possblts->rra = 0;
+	possblts->rrb = 0;
+	possblts->rrr = 0;
 }

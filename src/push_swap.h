@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 17:07:38 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 12:10:03 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
 
-typedef struct possible
+typedef struct poss
 {
 	int		ra;
 	int		rra;
@@ -33,7 +33,7 @@ typedef struct possible
 	int		rr;
 	int		rrr;
 	int		operations;
-}			t_possible;
+}			t_poss;
 
 typedef struct node
 {
@@ -44,7 +44,7 @@ typedef struct node
 }		t_node;
 
 // init.c
-void	init_possibilities(t_possible *possibilities);
+void	init_possblts(t_poss *possibilities);
 
 // errors.c
 void	check_args(int argc, char **argv);
@@ -86,7 +86,7 @@ void	sort_three_nums(t_node **stack_a);
 int		is_list_sorted(t_node *lst);
 void	numof_r_rr_moves(t_node *stck, int num_to_move, int *r, int *rr);
 void	turk_algo(t_node **stck_a, t_node **stck_b);
-int		closest_lower_num(t_node *stck, int desired_num);
+int		lower_num(t_node *stck, int desired_num);
 
 //push_swap.c
 void	put_both_stck(t_node *stck_a, t_node *stck_b);
