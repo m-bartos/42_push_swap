@@ -6,3 +6,4 @@ push_swap
 checker_linux
 push_swap_test_linux.sh
 output.txt
+run_push_swap.sh

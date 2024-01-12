@@ -6,25 +6,57 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:40:37 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/12 12:38:13 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	arr_length(char	**arr)
+{
+	int	i;
+
+	i = 0;
+	while (*arr != NULL)
+	{
+		i++;
+		arr++;
+	}
+	return (i);
+}
+
 t_node	*load_in_list(int argc, char **argv)
 {
+	char**	arr_of_ints;
 	int		i;
 	t_node	*stck;
 	t_node	*new_node;
+	
 
 	stck = NULL;
-	i = 1;
-	while (i < argc)
+	if (argc == 2)
 	{
-		new_node = ft_stcknew(ft_atoi(argv[i]));
-		ft_stckadd_back(&stck, new_node);
-		i++;
+		arr_of_ints = ft_split(argv[1], ' ');
+		check_args(arr_length(arr_of_ints), arr_of_ints);
+		i = 0;
+		while (i < arr_length(arr_of_ints))
+		{
+			new_node = ft_stcknew(ft_atoi(arr_of_ints[i]));
+			ft_stckadd_back(&stck, new_node);
+			i++;
+		}
+		free(arr_of_ints);
+	}
+	else
+	{
+		check_args(argc - 1, &(*(argv + 1)));
+		i = 1;
+		while (i < argc)
+		{
+			new_node = ft_stcknew(ft_atoi(argv[i]));
+			ft_stckadd_back(&stck, new_node);
+			i++;
+		}
 	}
 	return (stck);
 }
@@ -76,7 +108,11 @@ int	main(int argc, char **argv)
 
 	stck_a = NULL;
 	stck_b = NULL;
-	check_args(argc, argv);
+	if (argc == 1)
+	{
+		ft_putstr_fd("Error: not enough parameters", 1);
+		return (1);
+	}
 	stck_a = load_in_list(argc, argv);
 	put_both_stck(stck_a, stck_b);
 	if (is_list_sorted(stck_a) || ft_stcksize(stck_a) == 1)
