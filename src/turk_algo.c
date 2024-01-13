@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/13 17:40:32 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 17:47:16 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,50 @@ int	rrx_operations(t_poss *possibilities)
 		return (possibilities->rrb);
 }
 
+void	ra_rb_is_lowest(t_poss *possblts, int ra_rb_oper)
+{
+	if (possblts->ra >= possblts->rb)
+	{
+		possblts->operations = ra_rb_oper;
+		possblts->rr = possblts->rb;
+		possblts->ra = possblts->ra - possblts->rb;
+		possblts->rb = 0;
+		possblts->rra = 0;
+		possblts->rrb = 0;
+	}
+	else
+	{
+		possblts->operations = ra_rb_oper;
+		possblts->rr = possblts->ra;
+		possblts->rb = possblts->rb - possblts->ra;
+		possblts->ra = 0;
+		possblts->rra = 0;
+		possblts->rrb = 0;
+	}
+}
+
+void	rra_rrb_is_lowest(t_poss *possblts, int rra_rrb_oper)
+{
+	if (possblts->rra >= possblts->rrb)
+	{
+		possblts->operations = rra_rrb_oper;
+		possblts->ra = 0;
+		possblts->rb = 0;
+		possblts->rrr = possblts->rrb;
+		possblts->rra = possblts->rra - possblts->rrb;
+		possblts->rrb = 0;
+	}
+	else
+	{
+		possblts->operations = rra_rrb_oper;
+		possblts->ra = 0;
+		possblts->rb = 0;
+		possblts->rrr = possblts->rra;
+		possblts->rrb = possblts->rrb - possblts->rra;
+		possblts->rra = 0;
+	}
+}
+
 void	rr_rrr_optimaze(t_poss *possblts)
 {
 	int	rra_rb;
@@ -65,47 +109,9 @@ void	rr_rrr_optimaze(t_poss *possblts)
 	rra_rb = possblts->rra + possblts->rb;
 	rra_rrb = rrx_operations(possblts);
 	if (ra_rb <= ra_rrb && ra_rb <= rra_rb && ra_rb <= rra_rrb)
-	{
-		if (possblts->ra >= possblts->rb)
-		{
-			possblts->operations = ra_rb;
-			possblts->rr = possblts->rb;
-			possblts->ra = possblts->ra - possblts->rb;
-			possblts->rb = 0;
-			possblts->rra = 0;
-			possblts->rrb = 0;
-		}
-		else
-		{
-			possblts->operations = ra_rb;
-			possblts->rr = possblts->ra;
-			possblts->rb = possblts->rb - possblts->ra;
-			possblts->ra = 0;
-			possblts->rra = 0;
-			possblts->rrb = 0;
-		}
-	}
+		ra_rb_is_lowest(possblts, ra_rb);
 	else if (rra_rrb <= ra_rb && rra_rrb <= ra_rrb && rra_rrb <= rra_rb)
-	{
-		if (possblts->rra >= possblts->rrb)
-		{
-			possblts->operations = rra_rrb;
-			possblts->ra = 0;
-			possblts->rb = 0;
-			possblts->rrr = possblts->rrb;
-			possblts->rra = possblts->rra - possblts->rrb;
-			possblts->rrb = 0;
-		}
-		else
-		{
-			possblts->operations = rra_rrb;
-			possblts->ra = 0;
-			possblts->rb = 0;
-			possblts->rrr = possblts->rra;
-			possblts->rrb = possblts->rrb - possblts->rra;
-			possblts->rra = 0;
-		}
-	}
+		rra_rrb_is_lowest(possblts, rra_rrb);
 	else if (ra_rrb <= ra_rb && ra_rrb <= rra_rb && ra_rrb <= rra_rrb)
 	{
 		possblts->operations = ra_rrb;
