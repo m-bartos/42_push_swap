@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/13 17:27:21 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 18:58:07 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ int	main(int argc, char **argv)
 	stck_a = NULL;
 	stck_b = NULL;
 	if (argc == 1)
-	{
-		ft_putstr_fd("Error: not enough parameters", 1);
-		return (1);
-	}
+		return (0);
 	stck_a = load_in_list(argc, argv);
 	check_dup_nums(stck_a);
 	if (is_stck_sorted(stck_a) || ft_stcksize(stck_a) == 1)
