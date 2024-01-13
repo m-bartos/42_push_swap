@@ -6,13 +6,13 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 16:26:35 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 16:29:50 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_pushswap_atoi(const char *str)
+int	ft_ps_atoi(const char *str)
 {
 	int		i;
 	long	sign;
@@ -46,7 +46,6 @@ t_node	*load_in_list(int argc, char **argv)
 	char	**arr_of_ints;
 	int		i;
 	t_node	*stck;
-	t_node	*new_node;
 
 	stck = NULL;
 	if (argc == 2)
@@ -55,11 +54,7 @@ t_node	*load_in_list(int argc, char **argv)
 		check_args(arr_length(arr_of_ints), arr_of_ints);
 		i = 0;
 		while (i < arr_length(arr_of_ints))
-		{
-			new_node = ft_stcknew(ft_pushswap_atoi(arr_of_ints[i]));
-			ft_stckadd_back(&stck, new_node);
-			i++;
-		}
+			ft_stckadd_back(&stck, ft_stcknew(ft_ps_atoi(arr_of_ints[i++])));
 		free_array(arr_of_ints);
 	}
 	else
@@ -67,11 +62,7 @@ t_node	*load_in_list(int argc, char **argv)
 		check_args(argc - 1, &(*(argv + 1)));
 		i = 1;
 		while (i < argc)
-		{
-			new_node = ft_stcknew(ft_pushswap_atoi(argv[i]));
-			ft_stckadd_back(&stck, new_node);
-			i++;
-		}
+			ft_stckadd_back(&stck, ft_stcknew(ft_ps_atoi(argv[i++])));
 	}
 	return (stck);
 }
