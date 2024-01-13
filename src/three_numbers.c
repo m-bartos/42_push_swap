@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:58:02 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/11 16:39:47 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 17:32:16 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sort_two_nums(t_node **stck_a)
 {
-	if (is_list_sorted(*stck_a))
+	if (is_stck_sorted(*stck_a))
 		return ;
 	else
 		ra(stck_a);

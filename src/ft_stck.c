@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:43:11 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 16:26:41 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 17:27:51 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,21 @@ void	ft_stckclear(t_node **lst)
 		actual_node = temp;
 	}
 	*lst = NULL;
+}
+
+int	is_stck_sorted(t_node *lst)
+{
+	int	temp;
+
+	temp = lst->number;
+	while (lst != NULL)
+	{
+		if (temp > lst->number)
+			return (0);
+		temp = lst->number;
+		lst = lst->next;
+	}
+	return (1);
 }
 
 // void	put_stck(t_node *stck)

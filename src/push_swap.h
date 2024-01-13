@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 16:27:22 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 17:28:18 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	check_args(int argc, char **argv);
 t_node	*ft_stcknew(int number);
 void	ft_stckadd_back(t_node **lst, t_node *new);
 void	ft_stckclear(t_node **lst);
+int		is_stck_sorted(t_node *lst);
 
 // ft_stck_utils.c
 int		ft_stcksize(t_node *lst);
@@ -88,7 +89,7 @@ void	sort_two_nums(t_node **stck_a);
 void	sort_three_nums(t_node **stack_a);
 
 //turk_algo.c
-int		is_list_sorted(t_node *lst);
+int		is_stck_sorted(t_node *lst);
 void	numof_r_rr_moves(t_node *stck, int num_to_move, int *r, int *rr);
 void	turk_algo(t_node **stck_a, t_node **stck_b);
 int		lower_num(t_node *stck, int desired_num);
