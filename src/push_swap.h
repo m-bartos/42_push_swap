@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/13 18:45:44 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 18:47:13 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int		arr_length(char	**arr);
 void	free_array(char **arr);
 
 // do_operations.c
-void	do_operations(t_poss *lowest_possblts, t_node **stck_a, t_node **stck_b);
+void	do_operations(t_poss *lowest_possblts, \
+		t_node **stck_a, t_node **stck_b);
 
 // errors.c
 void	check_dup_nums(t_node *stck);
@@ -76,7 +77,6 @@ int		lower_num(t_node *stck, int desired_num);
 int		higher_num(t_node *stck, int desired_num);
 void	ra_rb_is_lowest(t_poss *possblts, int ra_rb_oper);
 void	rra_rrb_is_lowest(t_poss *possblts, int rra_rrb_oper);
-
 
 // get_numof_opers.c
 int		rx_operations(t_poss *possibilities);
