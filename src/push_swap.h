@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/13 18:04:56 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 18:45:44 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,16 @@ typedef struct node
 	struct node	*next;
 }		t_node;
 
-// init.c
-void	init_possblts(t_poss *possibilities);
+// possblts_init_cpy.c
+void	possblts_init(t_poss *possblts);
+void	possblts_cpy(t_poss *dest, const t_poss *src);
 
 // array_utils.c
 int		arr_length(char	**arr);
 void	free_array(char **arr);
+
+// do_operations.c
+void	do_operations(t_poss *lowest_possblts, t_node **stck_a, t_node **stck_b);
 
 // errors.c
 void	check_dup_nums(t_node *stck);
@@ -66,6 +70,20 @@ int		ft_stck_min(t_node *lst);
 int		ft_stck_max(t_node *lst);
 t_node	*ft_stcklast(t_node *lst);
 t_node	*ft_stck_seclast(t_node *lst);
+
+// get_numof_opers_utils.c
+int		lower_num(t_node *stck, int desired_num);
+int		higher_num(t_node *stck, int desired_num);
+void	ra_rb_is_lowest(t_poss *possblts, int ra_rb_oper);
+void	rra_rrb_is_lowest(t_poss *possblts, int rra_rrb_oper);
+
+
+// get_numof_opers.c
+int		rx_operations(t_poss *possibilities);
+int		rrx_operations(t_poss *possibilities);
+void	numof_r_rr_moves(t_node *stck, int num_to_move, int *rx, int *rrx);
+void	rr_rrr_optimaze(t_poss *possblts);
+void	get_numof_opers(t_poss	*possblts, t_node *stck_a, t_node *stck_b);
 
 // pa_pb.c
 void	pa(t_node **stck_a, t_node **stck_b);
