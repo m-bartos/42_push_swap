@@ -6,26 +6,11 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:43:11 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 15:43:17 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 17:27:51 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_stcksize(t_node *lst)
-{
-	size_t	length;
-
-	if (lst == NULL)
-		return (0);
-	length = 0;
-	while (lst != NULL)
-	{
-		length++;
-		lst = lst->next;
-	}
-	return (length);
-}
 
 t_node	*ft_stcknew(int number)
 {
@@ -52,70 +37,6 @@ void	ft_stckadd_back(t_node **lst, t_node *new)
 	}
 }
 
-t_node	*ft_stcklast(t_node *lst)
-{
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
-}
-
-t_node	*ft_stck_seclast(t_node *lst)
-{
-	t_node	*sec_lst;
-
-	if (lst == NULL)
-		return (NULL);
-	sec_lst = lst;
-	while (lst->next != NULL)
-	{
-		sec_lst = lst;
-		lst = lst->next;
-	}
-	return (sec_lst);
-}
-
-void	ft_freestck(t_node *lst)
-{
-	t_node	*temp_node;
-
-	while (lst != NULL)
-	{
-		temp_node = lst;
-		lst = lst->next;
-		free(temp_node);
-	}
-}
-
-int	ft_stck_min(t_node *lst)
-{
-	int	min;
-
-	min = lst->number;
-	while (lst != NULL)
-	{
-		if (min > lst->number)
-			min = lst->number;
-		lst = lst->next;
-	}
-	return (min);
-}
-
-int	ft_stck_max(t_node *lst)
-{
-	int	max;
-
-	max = lst->number;
-	while (lst != NULL)
-	{
-		if (max < lst->number)
-			max = lst->number;
-		lst = lst->next;
-	}
-	return (max);
-}
-
 void	ft_stckclear(t_node **lst)
 {
 	t_node	*temp;
@@ -132,3 +53,57 @@ void	ft_stckclear(t_node **lst)
 	}
 	*lst = NULL;
 }
+
+int	is_stck_sorted(t_node *lst)
+{
+	int	temp;
+
+	temp = lst->number;
+	while (lst != NULL)
+	{
+		if (temp > lst->number)
+			return (0);
+		temp = lst->number;
+		lst = lst->next;
+	}
+	return (1);
+}
+
+// void	put_stck(t_node *stck)
+// {
+// 	ft_printf("-----\n");
+// 	while (stck != NULL)
+// 	{
+// 		ft_putnbr_fd(stck->number, 1);
+// 		ft_putchar_fd('\n', 1);
+// 		stck = stck->next;
+// 	}
+// 	ft_printf("-----\n");
+// }
+
+// void	put_both_stck(t_node *stck_a, t_node *stck_b)
+// {
+// 	static int	fd;
+
+// 	if (fd == 0)
+// 	{
+// 		fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+// 		fd = -1; // delete if you want to write stacks to output.txt
+// 	}
+// 	ft_putstr_fd("-----\n", fd);
+// 	ft_putstr_fd("--A--\n", fd);
+// 	while (stck_a != NULL)
+// 	{
+// 		ft_putnbr_fd(stck_a->number, fd);
+// 		ft_putstr_fd("\n", fd);
+// 		stck_a = stck_a->next;
+// 	}
+// 	ft_putstr_fd("--B--\n", fd);
+// 	while (stck_b != NULL)
+// 	{
+// 		ft_putnbr_fd(stck_b->number, fd);
+// 		ft_putstr_fd("\n", fd);
+// 		stck_b = stck_b->next;
+// 	}
+// 	ft_putstr_fd("-----\n\n", fd);
+// }
