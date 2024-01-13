@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/13 17:47:16 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 18:20:18 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,11 +140,11 @@ void	rr_rrr_optimaze(t_poss *possblts)
  * @param n_a Number to be pushed from stack_a to stack_b.
  * @param n_b Number in stack_b that affects the pushing strategy.
  */
-void	get_numof_oper(t_poss	*possblts, t_node *stck_a, t_node *stck_b, int n_a, int n_b)
+void	get_numof_oper(t_poss	*possblts, t_node *stck_a, t_node *stck_b)
 {
 	init_possblts(possblts);
-	numof_r_rr_moves(stck_a, n_a, &possblts->ra, &possblts->rra);
-	numof_r_rr_moves(stck_b, n_b, &possblts->rb, &possblts->rrb);
+	numof_r_rr_moves(stck_a, possblts->num_a, &possblts->ra, &possblts->rra);
+	numof_r_rr_moves(stck_b, possblts->num_b, &possblts->rb, &possblts->rrb);
 	rr_rrr_optimaze(possblts);
 }
 
@@ -248,7 +248,8 @@ void	last_sort_of_stck_a(t_node **stck_a)
 	t_poss	possblts;
 
 	init_possblts(&possblts);
-	numof_r_rr_moves(*stck_a, ft_stck_min(*stck_a), &possblts.ra, &possblts.rra);
+	possblts.num_a = ft_stck_min(*stck_a);
+	numof_r_rr_moves(*stck_a, possblts.num_a, &possblts.ra, &possblts.rra);
 	if (possblts.ra <= possblts.rra)
 		possblts.rra = 0;
 	else
@@ -258,6 +259,8 @@ void	last_sort_of_stck_a(t_node **stck_a)
 
 void	possible_cpy(t_poss *dest, const t_poss *src)
 {
+	dest->num_a = src->num_a;
+	dest->num_b = src->num_b;
 	dest->operations = src->operations;
 	dest->ra = src->ra;
 	dest->rb = src->rb;
@@ -317,12 +320,14 @@ void	push_one_num_from_a_to_b(t_node **stck_a, t_node **stck_b)
 	while (stck_a_iter != NULL)
 	{
 		num = stck_a_iter->number;
+		possblts.num_a = num;
 		if (num < ft_stck_min(*stck_b))
-			get_numof_oper(&possblts, *stck_a, *stck_b, num, ft_stck_max(*stck_b));
+			possblts.num_b = ft_stck_max(*stck_b);
 		else if (num > ft_stck_max(*stck_b))
-			get_numof_oper(&possblts, *stck_a, *stck_b, num, ft_stck_max(*stck_b));
+			possblts.num_b = ft_stck_max(*stck_b);
 		else
-			get_numof_oper(&possblts, *stck_a, *stck_b, num, lower_num(*stck_b, num));
+			possblts.num_b = lower_num(*stck_b, num);
+		get_numof_oper(&possblts, *stck_a, *stck_b);
 		if (possblts.operations < lowest_possblts.operations)
 			possible_cpy(&lowest_possblts, &possblts);
 		stck_a_iter = stck_a_iter->next;

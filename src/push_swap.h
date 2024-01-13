@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/13 17:28:18 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 18:04:56 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 typedef struct poss
 {
+	int		num_a;
+	int		num_b;
 	int		ra;
 	int		rra;
 	int		rb;
