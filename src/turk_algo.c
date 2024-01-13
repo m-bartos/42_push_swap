@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 16:16:17 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 16:53:11 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,80 +53,80 @@ int	rrx_operations(t_poss *possibilities)
 		return (possibilities->rrb);
 }
 
-void	rr_rrr_optimaze(t_poss **possblts)
+void	rr_rrr_optimaze(t_poss *possblts)
 {
 	int	rra_rb;
 	int	ra_rrb;
 	int	ra_rb;
 	int	rra_rrb;
 
-	ra_rb = rx_operations(*possblts);
-	ra_rrb = (*possblts)->ra + (*possblts)->rrb;
-	rra_rb = (*possblts)->rra + (*possblts)->rb;
-	rra_rrb = rrx_operations(*possblts);
+	ra_rb = rx_operations(possblts);
+	ra_rrb = possblts->ra + possblts->rrb;
+	rra_rb = possblts->rra + possblts->rb;
+	rra_rrb = rrx_operations(possblts);
 	if (ra_rb <= ra_rrb && ra_rb <= rra_rb && ra_rb <= rra_rrb)
 	{
-		if ((*possblts)->ra >= (*possblts)->rb)
+		if (possblts->ra >= possblts->rb)
 		{
-			(*possblts)->operations = ra_rb;
-			(*possblts)->rr = (*possblts)->rb;
-			(*possblts)->ra = (*possblts)->ra - (*possblts)->rb;
-			(*possblts)->rb = 0;
-			(*possblts)->rra = 0;
-			(*possblts)->rrb = 0;
+			possblts->operations = ra_rb;
+			possblts->rr = possblts->rb;
+			possblts->ra = possblts->ra - possblts->rb;
+			possblts->rb = 0;
+			possblts->rra = 0;
+			possblts->rrb = 0;
 		}
 		else
 		{
-			(*possblts)->operations = ra_rb;
-			(*possblts)->rr = (*possblts)->ra;
-			(*possblts)->rb = (*possblts)->rb - (*possblts)->ra;
-			(*possblts)->ra = 0;
-			(*possblts)->rra = 0;
-			(*possblts)->rrb = 0;
+			possblts->operations = ra_rb;
+			possblts->rr = possblts->ra;
+			possblts->rb = possblts->rb - possblts->ra;
+			possblts->ra = 0;
+			possblts->rra = 0;
+			possblts->rrb = 0;
 		}
 	}
 	else if (rra_rrb <= ra_rb && rra_rrb <= ra_rrb && rra_rrb <= rra_rb)
 	{
-		if ((*possblts)->rra >= (*possblts)->rrb)
+		if (possblts->rra >= possblts->rrb)
 		{
-			(*possblts)->operations = rra_rrb;
-			(*possblts)->ra = 0;
-			(*possblts)->rb = 0;
-			(*possblts)->rrr = (*possblts)->rrb;
-			(*possblts)->rra = (*possblts)->rra - (*possblts)->rrb;
-			(*possblts)->rrb = 0;
+			possblts->operations = rra_rrb;
+			possblts->ra = 0;
+			possblts->rb = 0;
+			possblts->rrr = possblts->rrb;
+			possblts->rra = possblts->rra - possblts->rrb;
+			possblts->rrb = 0;
 		}
 		else
 		{
-			(*possblts)->operations = rra_rrb;
-			(*possblts)->ra = 0;
-			(*possblts)->rb = 0;
-			(*possblts)->rrr = (*possblts)->rra;
-			(*possblts)->rrb = (*possblts)->rrb - (*possblts)->rra;
-			(*possblts)->rra = 0;
+			possblts->operations = rra_rrb;
+			possblts->ra = 0;
+			possblts->rb = 0;
+			possblts->rrr = possblts->rra;
+			possblts->rrb = possblts->rrb - possblts->rra;
+			possblts->rra = 0;
 		}
 	}
 	else if (ra_rrb <= ra_rb && ra_rrb <= rra_rb && ra_rrb <= rra_rrb)
 	{
-		(*possblts)->operations = ra_rrb;
-		(*possblts)->rra = 0;
-		(*possblts)->rb = 0;
+		possblts->operations = ra_rrb;
+		possblts->rra = 0;
+		possblts->rb = 0;
 	}
 	else if (rra_rb <= ra_rb && rra_rb <= ra_rrb && rra_rb <= rra_rrb)
 	{
-		(*possblts)->operations = rra_rb;
-		(*possblts)->ra = 0;
-		(*possblts)->rrb = 0;
+		possblts->operations = rra_rb;
+		possblts->ra = 0;
+		possblts->rrb = 0;
 	}
 }
 
 // calculate n of ra and n of rra to get number on top of stack_a
 // calculate n of rb and n of rrb to get max number on top of stack_b
-void	get_numof_oper(t_poss	**possblts, t_node *stck_a, t_node *stck_b, int n_a, int n_b)
+void	get_numof_oper(t_poss	*possblts, t_node *stck_a, t_node *stck_b, int n_a, int n_b)
 {
-	init_possblts(*possblts);
-	numof_r_rr_moves(stck_a, n_a, &(*possblts)->ra, &(*possblts)->rra);
-	numof_r_rr_moves(stck_b, n_b, &(*possblts)->rb, &(*possblts)->rrb);
+	init_possblts(possblts);
+	numof_r_rr_moves(stck_a, n_a, &possblts->ra, &possblts->rra);
+	numof_r_rr_moves(stck_b, n_b, &possblts->rb, &possblts->rrb);
 	rr_rrr_optimaze(possblts);
 }
 
@@ -225,7 +225,7 @@ void	push_stck_b_back_to_a(t_node **stck_a, t_node **stck_b)
 	}
 }
 
-void	last_sort_of_stck_a(t_node **stck_a, t_node **stck_b)
+void	last_sort_of_stck_a(t_node **stck_a)
 {
 	t_poss	possblts;
 
@@ -235,7 +235,7 @@ void	last_sort_of_stck_a(t_node **stck_a, t_node **stck_b)
 		possblts.rra = 0;
 	else
 		possblts.ra = 0;
-	do_operations(&possblts, stck_a, stck_b);
+	do_operations(&possblts, stck_a, NULL);
 }
 
 void	possible_cpy(t_poss *dest, const t_poss *src)
@@ -247,6 +247,33 @@ void	possible_cpy(t_poss *dest, const t_poss *src)
 	dest->rra = src->rra;
 	dest->rrb = src->rrb;
 	dest->rrr = src->rrr;
+}
+
+void	push_one_num_from_a_to_b(t_node **stck_a, t_node **stck_b)
+{
+	t_poss	possblts;
+	t_poss	lowest_possblts;
+	int		num;
+	t_node	*stck_a_iter;
+
+	stck_a_iter = *stck_a;
+	init_possblts(&lowest_possblts);
+	lowest_possblts.operations = INT_MAX;
+	while (stck_a_iter != NULL)
+	{
+		num = stck_a_iter->number;
+		if (num < ft_stck_min(*stck_b))
+			get_numof_oper(&possblts, *stck_a, *stck_b, num, ft_stck_max(*stck_b));
+		else if (num > ft_stck_max(*stck_b))
+			get_numof_oper(&possblts, *stck_a, *stck_b, num, ft_stck_max(*stck_b));
+		else
+			get_numof_oper(&possblts, *stck_a, *stck_b, num, lower_num(*stck_b, num));
+		if (possblts.operations < lowest_possblts.operations)
+			possible_cpy(&lowest_possblts, &possblts);
+		stck_a_iter = stck_a_iter->next;
+	}
+	do_operations(&lowest_possblts, stck_a, stck_b);
+	pb(stck_a, stck_b);
 }
 
 // if number of ints is 4 -> push 1 to stack_b
@@ -261,12 +288,6 @@ void	possible_cpy(t_poss *dest, const t_poss *src)
 // --- WHILE LOOP ENDS ---
 void	pushing_nums_from_a_to_b(t_node **stck_a, t_node **stck_b)
 {
-	t_poss	possblts;
-	t_poss	*ptr_possblts;
-	t_poss	lowest_possblts;
-	int		num;
-	t_node	*stck_a_iter;
-
 	if (ft_stcksize(*stck_a) == 4)
 		pb(stck_a, stck_b);
 	else
@@ -274,27 +295,8 @@ void	pushing_nums_from_a_to_b(t_node **stck_a, t_node **stck_b)
 		pb(stck_a, stck_b);
 		pb(stck_a, stck_b);
 	}
-	ptr_possblts = &possblts;
 	while (ft_stcksize(*stck_a) > 3)
-	{
-		stck_a_iter = *stck_a;
-		lowest_possblts.operations = INT_MAX;
-		while (stck_a_iter != NULL)
-		{
-			num = stck_a_iter->number;
-			if (num < ft_stck_min(*stck_b))
-				get_numof_oper(&ptr_possblts, *stck_a, *stck_b, num, ft_stck_max(*stck_b));
-			else if (num > ft_stck_max(*stck_b))
-				get_numof_oper(&ptr_possblts, *stck_a, *stck_b, num, ft_stck_max(*stck_b));
-			else
-				get_numof_oper(&ptr_possblts, *stck_a, *stck_b, num, lower_num(*stck_b, num));
-			if (possblts.operations < lowest_possblts.operations)
-				possible_cpy(&lowest_possblts, &possblts);
-			stck_a_iter = stck_a_iter->next;
-		}
-		do_operations(&lowest_possblts, stck_a, stck_b);
-		pb(stck_a, stck_b);
-	}
+		push_one_num_from_a_to_b(stck_a, stck_b);
 }
 
 void	turk_algo(t_node **stck_a, t_node **stck_b)
@@ -302,5 +304,5 @@ void	turk_algo(t_node **stck_a, t_node **stck_b)
 	pushing_nums_from_a_to_b(stck_a, stck_b);
 	sort_three_nums(stck_a);
 	push_stck_b_back_to_a(stck_a, stck_b);
-	last_sort_of_stck_a(stck_a, stck_b);
+	last_sort_of_stck_a(stck_a);
 }
