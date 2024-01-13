@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/13 17:31:28 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/13 17:40:32 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,12 @@ void	rr_rrr_optimaze(t_poss *possblts)
 /**
  * @brief Calculates the number of operations needed for various movements.
  *
- * This function determines the number of operations required for both rotate (ra, rb) and
- * reverse rotate (rra, rrb) movements in the context of pushing a number from stack_a to stack_b.
+ * This function determines the number of operations required for both rotate 
+ * (ra, rb) and * reverse rotate (rra, rrb) movements in the context of pushing
+ * a number from stack_a to stack_b.
  *
- * @param possblts Pointer to the structure storing the number of operations for each possibility.
+ * @param possblts Pointer to the structure storing the number of operations
+ * for each possibility.
  * @param stck_a Pointer to the top of stack_a (source stack).
  * @param stck_b Pointer to the top of stack_b (destination stack).
  * @param n_a Number to be pushed from stack_a to stack_b.
@@ -195,8 +197,9 @@ void	do_operations(t_poss *lowest_possblts, t_node **stck_a, t_node **stck_b)
 /**
  * @brief Pushes numbers from stack_b back to stack_a in an optimal manner.
  *
- * This function efficiently pushes numbers from stack_b back to stack_a by considering the optimal
- * sequence of reverse and rotate operations (ra, rra) to reach the right position for insertion.
+ * This function efficiently pushes numbers from stack_b back to stack_a by
+ *  considering the optimal * sequence of reverse and rotate operations 
+ * (ra, rra) to reach the right position for insertion.
  *
  * @param stck_a Pointer to the top of stack_a (destination stack).
  * @param stck_b Pointer to the top of stack_b (source stack).
@@ -227,9 +230,10 @@ void	push_stck_b_back_to_a(t_node **stck_a, t_node **stck_b)
 /**
  * @brief Performs the last sorting step on stack_a.
  *
- * This function evaluates the optimal sequence of reverse and rotate operations (ra, rra) on stack_a
- * to achieve the final sorting state. It considers the number of moves needed for both operations
- * and executes the one with the minimum moves.
+ * This function evaluates the optimal sequence of reverse and rotate operations
+ *  (ra, rra) on stack_a * to achieve the final sorting state. It considers the 
+ * number of moves needed for both operations * and executes the one with the 
+ * minimum moves.
  *
  * @param stck_a Pointer to the top of stack_a (source stack).
  */
@@ -258,27 +262,38 @@ void	possible_cpy(t_poss *dest, const t_poss *src)
 }
 
 /**
- * @brief Pushes the number with the minimum operations needed from stack_a to stack_b.
+ * @brief Pushes the number with the minimum operations needed from
+ *  stack_a to stack_b.
  *
  * @details The algorithm works as follows:
- * 1. Initialize necessary variables and structures, including 'possblts' to store the number of operations
- *    for each possibility and 'lowest_possblts' to store the information about the lowest number of operations.
+ * 1. Initialize necessary variables and structures, including 'possblts'
+ * to store the number of operations for each possibility and 'lowest_possblts'
+ * to store the information about the lowest number of operations.
  *
- * 2. Iterate through each number in stack_a to evaluate the optimal candidate for pushing to stack_b.
+ * 2. Iterate through each number in stack_a to evaluate the optimal candidate 
+ * for pushing to stack_b.
  *
- * 3. For each number, calculate the number of operations needed for pushing it to stack_b by considering three scenarios:
- *    a. If the number is smaller than the minimum value in stack_b, calculate operations based on the maximum value in stack_b.
- *    b. If the number is greater than the maximum value in stack_b, calculate operations based on the maximum value in stack_b.
- *    c. Otherwise, calculate operations based on the value in stack_b that is lower than the current number.
+ * 3. For each number, calculate the number of operations needed for pushing it 
+ * to stack_b by considering three scenarios:
+ *    a. If the number is smaller than the minimum value in stack_b, calculate 
+ * operations based on the maximum value in stack_b.
+ *    b. If the number is greater than the maximum value in stack_b, calculate 
+ * operations based on the maximum value in stack_b.
+ *    c. Otherwise, calculate operations based on the value in stack_b that is 
+ * lower than the current number.
  *
- * 4. Update 'lowest_possblts' with the information from 'possblts' if the current number requires fewer operations.
+ * 4. Update 'lowest_possblts' with the information from 'possblts' if the 
+ * current number requires fewer operations.
  *
- * 5. Perform the operations determined by 'lowest_possblts' to adjust both stack_a and stack_b accordingly.
+ * 5. Perform the operations determined by 'lowest_possblts' to adjust both
+ * stack_a and stack_b accordingly.
  *
- * 6. Finally, push the selected number from stack_a to stack_b using the 'pb' (push to stack_b) operation.
+ * 6. Finally, push the selected number from stack_a to stack_b using the 'pb' 
+ * (push to stack_b) operation.
  *
- * This approach optimizes the pushing process by considering various scenarios and choosing the number
- * that minimizes the overall number of operations, contributing to the efficiency of the sorting algorithm.
+ * This approach optimizes the pushing process by considering various scenarios
+ * and choosing the number that minimizes the overall number of operations,
+ * contributing to the efficiency of the sorting algorithm.
  *
  * @param stck_a Pointer to the top of stack_a (source stack).
  * @param stck_b Pointer to the top of stack_b (destination stack).
@@ -311,7 +326,8 @@ void	push_one_num_from_a_to_b(t_node **stck_a, t_node **stck_b)
 }
 
 /**
- * @brief Pushes numbers from stack_a to stack_b according to turk_algo until there are only 3 numbers in stack_a.
+ * @brief Pushes numbers from stack_a to stack_b according to turk_algo until
+ * there are only 3 numbers in stack_a.
  *
  * @param stck_a Pointer to the top of stack_a (source stack).
  * @param stck_b Pointer to the top of stack_b (destination stack).
@@ -330,7 +346,8 @@ void	pushing_nums_from_a_to_b(t_node **stck_a, t_node **stck_b)
 }
 
 /**
- * @brief Implements the "turk_algorithm" function, a sorting algorithm with specific steps.
+ * @brief Implements the "turk_algorithm" function, a sorting algorithm
+ * with specific steps.
  *
  * Algorithm Steps:
  * 1. Start pushing integers from stack_a to stack_b according to turk_algo.
