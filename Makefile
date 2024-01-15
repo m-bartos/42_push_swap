@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/01/13 18:44:49 by mbartos          ###   ########.fr        #
+#    Updated: 2024/01/15 11:37:20 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,6 @@ $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "$(BOLD)$(GREEN)[ $(NAME) ready! ]$(NC)"
 
-bonus: all
-
 clean:
 	@rm -Rf $(OBJ_PATH)
 	@make clean -sC $(LIBFT_PATH)
@@ -75,4 +73,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all, bonus, re, clean, fclean, libft
+.PHONY: all, re, clean, fclean, libft
