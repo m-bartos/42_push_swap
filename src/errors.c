@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:17:15 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/12 16:06:31 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/15 11:47:25 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_dup_nums(t_node *stck)
 		{
 			if (stck->number == stck_runner->number)
 			{
-				ft_putstr_fd("Error: Duplicate numbers", 1);
+				ft_putstr_fd("Error: Duplicate numbers\n", 2);
 				ft_stckclear(&stck_first);
 				exit(1);
 			}
@@ -54,7 +54,7 @@ void	is_valid_number(char *str)
 			str++;
 		else
 		{
-			ft_putstr_fd("Error: wrong input.", 2);
+			ft_putstr_fd("Error: wrong input\n", 2);
 			exit(1);
 		}
 	}

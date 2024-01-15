@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/13 18:58:07 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/15 11:47:41 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_ps_atoi(const char *str)
 	number = number * sign;
 	if (number <= INT_MAX && number >= INT_MIN)
 		return (number);
-	ft_putstr_fd("Error: at least one number is not integer", 1);
+	ft_putstr_fd("Error: at least one number is not integer\n", 2);
 	exit(1);
 }
 
