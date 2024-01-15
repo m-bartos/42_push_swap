@@ -11,6 +11,7 @@ SOURCES =	ft_atoi.c \
 			ft_memmove.c \
 			ft_strlen.c \
 			ft_isprint.c \
+			ft_issign.c \
 			ft_memset.c \
 			ft_strncmp.c \
 			ft_isalnum.c \

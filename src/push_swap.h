@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:27:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/13 18:47:13 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/15 15:59:14 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ void	do_operations(t_poss *lowest_possblts, \
 		t_node **stck_a, t_node **stck_b);
 
 // errors.c
+void	put_wrong_input(char **arr_of_ints);
+void	put_wrong_type(char **arr_of_ints, t_node **stck);
 void	check_dup_nums(t_node *stck);
-void	check_args(int argc, char **argv);
+int		check_args(int len, char **arr);
 
 // ft_stck.c
 t_node	*ft_stcknew(int number);

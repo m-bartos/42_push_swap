@@ -6,11 +6,28 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:17:15 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/15 11:47:25 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/15 16:03:37 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	put_wrong_input(char **arr_of_ints)
+{
+	if (arr_of_ints != NULL)
+		free_array(arr_of_ints);
+	ft_putstr_fd("Error: wrong input\n", 2);
+	exit(1);
+}
+
+void	put_wrong_type(char **arr_of_ints, t_node **stck)
+{
+	if (arr_of_ints != NULL)
+		free_array(arr_of_ints);
+	ft_stckclear(stck);
+	ft_putstr_fd("Error: at least one number is not integer\n", 2);
+	exit(1);
+}
 
 void	check_dup_nums(t_node *stck)
 {
@@ -35,16 +52,7 @@ void	check_dup_nums(t_node *stck)
 	}
 }
 
-int	ft_issign(char c)
-{
-	if (c == '+' || c == '-')
-	{
-		return (1);
-	}
-	return (0);
-}
-
-void	is_valid_number(char *str)
+int	is_valid_number(char *str)
 {
 	if (ft_issign(*str))
 		str++;
@@ -53,18 +61,22 @@ void	is_valid_number(char *str)
 		if (ft_isdigit(*str))
 			str++;
 		else
-		{
-			ft_putstr_fd("Error: wrong input\n", 2);
-			exit(1);
-		}
+			return (0);
 	}
+	return (1);
 }
 
-void	check_args(int len, char **arr)
+int	check_args(int len, char **arr)
 {
 	int	i;
 
 	i = 0;
 	while (i < len)
-		is_valid_number(arr[i++]);
+	{
+		if (is_valid_number(arr[i]) == 1)
+			i++;
+		else
+			return (0);
+	}
+	return (1);
 }

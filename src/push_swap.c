@@ -6,13 +6,13 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:12:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/01/15 11:47:41 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/01/15 16:18:15 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_ps_atoi(const char *str)
+int	ps_atoi(const char *str, char **arr, t_node **stck)
 {
 	int		i;
 	long	sign;
@@ -37,32 +37,35 @@ int	ft_ps_atoi(const char *str)
 	number = number * sign;
 	if (number <= INT_MAX && number >= INT_MIN)
 		return (number);
-	ft_putstr_fd("Error: at least one number is not integer\n", 2);
-	exit(1);
+	put_wrong_type(arr, stck);
+	exit (1);
 }
 
 t_node	*load_in_list(int argc, char **argv)
 {
-	char	**arr_of_ints;
+	char	**arr;
 	int		i;
 	t_node	*stck;
 
+	arr = NULL;
 	stck = NULL;
 	if (argc == 2)
 	{
-		arr_of_ints = ft_split(argv[1], ' ');
-		check_args(arr_length(arr_of_ints), arr_of_ints);
+		arr = ft_split(argv[1], ' ');
+		if (check_args(arr_length(arr), arr) == 0)
+			put_wrong_input(arr);
 		i = 0;
-		while (i < arr_length(arr_of_ints))
-			ft_stckadd_back(&stck, ft_stcknew(ft_ps_atoi(arr_of_ints[i++])));
-		free_array(arr_of_ints);
+		while (i < arr_length(arr))
+			ft_stckadd_back(&stck, ft_stcknew(ps_atoi(arr[i++], arr, &stck)));
+		free_array(arr);
 	}
 	else
 	{
-		check_args(argc - 1, &(*(argv + 1)));
+		if (check_args(argc - 1, &(*(argv + 1))) == 0)
+			put_wrong_input(NULL);
 		i = 1;
 		while (i < argc)
-			ft_stckadd_back(&stck, ft_stcknew(ft_ps_atoi(argv[i++])));
+			ft_stckadd_back(&stck, ft_stcknew(ps_atoi(argv[i++], NULL, &stck)));
 	}
 	return (stck);
 }
