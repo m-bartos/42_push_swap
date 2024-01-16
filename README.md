@@ -2,11 +2,19 @@
 
 The goal of this project is to sort numbers in ascending order within a stack using only 11 predefined operations and one more stack.
 
-## Visualisations
+## Result visualization - sorting 100 random numbers
 ![push_swap](https://github.com/m-bartos/42_push_swap/assets/28412526/8b6993d4-8360-4bbd-854e-c648afdd5616)
 
-## Requirements for the sorting algorithm:
+## How to use
+The program is easy to use. 
+* First, you need to make: `Make`
+* Run program with command: `./push_swap [random numbers]` example: `./push_swap 4 -19 1 23 50 -1`
+* Output is set of instructions (see below)
+* If you want to check how many instructions were displayed, use pipe and `wc -l` command:
+`./push_swap 4 -19 1 23 50 -1 | wc -l`
 
+
+## Requirements for the sorting algorithm
 You have 2 stacks named a and b. At the beginning:
 * The stack a contains a random amount of negative and/or positive numbers which cannot be duplicated.
 * The stack b is empty.
@@ -26,7 +34,7 @@ To do so you have the following operations at your disposal:
 * rrr: rra and rrb at the same time.
 
 ## Used algorithm
-After researching a suitable algorithm for my push_swap, I opted to use the **'Turk algorithm'** described by **A. Yigit Ogun in his** [article](https://medium.com/@ayogun/push-swap-c1f5d2d41e97) on medium.com. This algorithm is straightforward to comprehend, nice to implement in C code and you will get maximum points through 42evaluation (lowest possible number of operations for sorting 100 and 500 numbers)
+After researching a suitable algorithm for my push_swap, I decided to use the **'Turk algorithm'** described by **A. Yigit Ogun in his** [article](https://medium.com/@ayogun/push-swap-c1f5d2d41e97) on medium.com. This algorithm is straightforward to comprehend, nice to implement in C code and it guarantees maximum points in the evaluation.
 
 ## Results - number of operations
 * Sorting stack with 100 random numbers - MIN = 496, MAX = 610 (average 540 - 570)
@@ -35,7 +43,7 @@ After researching a suitable algorithm for my push_swap, I opted to use the **'T
 ## Error check
 Several input errors are checked before the comparison algorithm is performed:
 * Verification that all arguments are numbers (digits and '+', '-' sign)
-* Verification that all arguments are integers (inbetween MIN_INT and MAX_INT value)
+* Verification that all arguments are integers (in between MIN_INT and MAX_INT values)
 * Identification and handling of duplicate numbers
 
 ## Thanks and credits:
