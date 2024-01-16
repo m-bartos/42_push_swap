@@ -45,6 +45,13 @@ Several input errors are checked before the comparison algorithm is performed:
 * Verification that all arguments are integers (in between MIN_INT and MAX_INT values)
 * Identification and handling of duplicate numbers
 
+## What I learned during this project
+* Understanding the mechanics of various sorting algorithms
+* Utilizing linked lists in a larger program for the first time
+* Enhancing proficiency with structs and struct pointers
+* Mastering the distinction between when a double pointer to a struct is necessary and when a regular pointer suffices as a function input
+* Improving the practical application of formatting and structuring function header documentation
+
 ## Thanks and credits:
 * **A. Yigit Ogun** for his [article](https://medium.com/@ayogun/push-swap-c1f5d2d41e97) about 'Turk algorithm'
 * **elijahkash** for his push_swap visualizer - [push_swap_gui](https://github.com/elijahkash/push_swap_gui)
