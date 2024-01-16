@@ -1,5 +1,10 @@
 # 42_push_swap
 
+The goal of this project is to sort numbers in ascending order within a stack using only 11 predefined operations and one more stack.
+
+## Visualisations
+![push_swap](https://github.com/m-bartos/42_push_swap/assets/28412526/8b6993d4-8360-4bbd-854e-c648afdd5616)
+
 ## Requirements for the sorting algorithm:
 
 You have 2 stacks named a and b. At the beginning:
@@ -19,3 +24,20 @@ To do so you have the following operations at your disposal:
 * rra (reverse rotate a): Shift down all elements of stack a by 1. The last element becomes the first one.
 * rrb (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
 * rrr: rra and rrb at the same time.
+
+## Used algorithm
+After researching a suitable algorithm for my push_swap, I opted to use the **'Turk algorithm'** described by **A. Yigit Ogun in his** [article](https://medium.com/@ayogun/push-swap-c1f5d2d41e97) on medium.com. This algorithm is straightforward to comprehend, nice to implement in C code and you will get maximum points through 42evaluation (lowest possible number of operations for sorting 100 and 500 numbers)
+
+## Results - number of operations
+* Sorting stack with 100 random numbers - MIN = 496, MAX = 610 (average 540 - 570)
+* Sorting stack with 500 random numbers - MIN = 4833, MAX = 5377 (average 4900 - 5200)
+
+## Error check
+Several input errors are checked before the comparison algorithm is performed:
+* Verification that all arguments are numbers (digits and '+', '-' sign)
+* Verification that all arguments are integers (inbetween MIN_INT and MAX_INT value)
+* Identification and handling of duplicate numbers
+
+## Thanks and credits:
+* **A. Yigit Ogun** for his [article](https://medium.com/@ayogun/push-swap-c1f5d2d41e97) about 'Turk algorithm'
+* **elijahkash** for his push_swap visualizer - [push_swap_gui](https://github.com/elijahkash/push_swap_gui)
