@@ -1,15 +1,14 @@
 # 42_push_swap
 
-The goal of this project is to sort numbers in ascending order within a stack using only 11 predefined operations and one more stack.
+The goal of this project is to sort numbers in ascending order within a stack using only 11 predefined operations and one more stack with the lowest number of operations possible.
 
 ## Result visualization - sorting 100 random numbers
 ![push_swap](https://github.com/m-bartos/42_push_swap/assets/28412526/8b6993d4-8360-4bbd-854e-c648afdd5616)
 
 ## How to use
-The program is easy to use. 
 * First, you need to make: `Make`
-* Run program with command: `./push_swap [random numbers]` example: `./push_swap 4 -19 1 23 50 -1`
-* Output is set of instructions (see below)
+* Run the program with the command: `./push_swap [random numbers]` example: `./push_swap 4 -19 1 23 50 -1`
+* Output is a set of instructions (see below).
 * If you want to check how many instructions were displayed, use pipe and `wc -l` command:
 `./push_swap 4 -19 1 23 50 -1 | wc -l`
 
@@ -18,18 +17,18 @@ The program is easy to use.
 You have 2 stacks named a and b. At the beginning:
 * The stack a contains a random amount of negative and/or positive numbers which cannot be duplicated.
 * The stack b is empty.
-* The goal is to sort in ascending order numbers into stack a. 
+* The goal is to sort in ascending order numbers into the stack a. 
 
 To do so you have the following operations at your disposal:
-* sa (swap a): Swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements.
-* sb (swap b): Swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements.
+* sa (swap a): Swap the first 2 elements at the top of stack a. Do nothing if there is only one or no element.
+* sb (swap b): Swap the first 2 elements at the top of stack b. Do nothing if there is only one or no element.
 * ss: sa and sb at the same time.
 * pa (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
 * pb (push b): Take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
-* ra (rotate a): Shift up all elements of stack a by 1. The first element becomes the last one.
+* ra (rotate a): Shift up all elements of the stack a by 1. The first element becomes the last one.
 * rb (rotate b): Shift up all elements of stack b by 1. The first element becomes the last one.
 * rr: ra and rb at the same time.
-* rra (reverse rotate a): Shift down all elements of stack a by 1. The last element becomes the first one.
+* rra (reverse rotate a): Shift down all elements of the stack a by 1. The last element becomes the first one.
 * rrb (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
 * rrr: rra and rrb at the same time.
 
